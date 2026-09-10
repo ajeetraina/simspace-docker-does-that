@@ -1,0 +1,45 @@
+# A SLIDE DECK — same manifest format as a lab, with `kind: slides`.
+# Deploys through the repo's existing Pages workflow and appears as a card on the
+# landing page alongside the getting-started lab.
+kind: slides
+
+title: "Docker does that?!"
+description: "Five Docker capabilities you may not know about — a developer's morning."
+
+catalog:
+  title: "Docker does that?! — Slides"
+  description: "Sandboxes, Testcontainers, Hardened Images, Scout, Compose — in one morning."
+  icon: slideshow
+  tags: ["docker", "slides", "sandboxes", "testcontainers", "scout", "compose"]
+  estimatedMinutes: 30
+  # Deck first on the landing page, the getting-started lab after it.
+  order: 1
+
+version: "1.0.0"
+
+# Default surface for content slides. `title`/`section` layouts pick their own.
+theme: light
+
+# Branded chrome, set once. Slides override or drop it with `chrome: false`.
+brand:
+  logo: assets/docker-logo-deep-blue.svg
+  eyebrow: "Docker does that?!"
+  source: "DOCKER · A developer's morning"
+
+# `slides:` is an alias of `sections:` — one file per chapter, each split into
+# individual slides on a `---` line.
+slides:
+  - title: Opening
+    contentPath: 00-opening.md
+  - title: Sandboxes
+    contentPath: 01-sandboxes.md
+  - title: Testcontainers
+    contentPath: 02-testcontainers.md
+  - title: Hardened Images
+    contentPath: 03-hardened-images.md
+  - title: Scout
+    contentPath: 04-scout.md
+  - title: Compose
+    contentPath: 05-compose.md
+  - title: Close
+    contentPath: 06-close.md
