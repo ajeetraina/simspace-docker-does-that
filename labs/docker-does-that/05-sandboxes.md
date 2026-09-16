@@ -1,15 +1,15 @@
 <!--
 layout: section
-eyebrow: "09:00 — coffee, editor, AI agent"
+eyebrow: "12:00 — isolate the AI coding agent"
 -->
 
 # You let an agent loose on your repo.
 
 …and it has the exact same permissions you do.
 
-Note: Nine AM. You kick off an AI coding agent — Claude Code, Codex, Gemini,
-whatever. You type "yes, run it." Great productivity. Also: that agent now runs
-as you.
+Note: Almost lunch. Max hands the repo back to an autonomous coding agent for the
+last cleanup — Claude Code, Codex, Gemini, whatever. He types "yes, run it." Great
+productivity. Also: that agent now runs as *him*.
 
 ---
 
@@ -74,3 +74,4 @@ free to try.
 
 Note: The whole thing is one command. Standalone CLI — works with Rancher Desktop
 too, no Docker Desktop dependency. Room to work, without handing over the machine.
+And with that, the morning's done — time for lunch.

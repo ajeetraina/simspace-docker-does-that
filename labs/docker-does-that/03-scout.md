@@ -1,6 +1,6 @@
 <!--
 layout: section
-eyebrow: "11:15 — before you push"
+eyebrow: "10:30 — before you push"
 -->
 
 # "What's actually inside this image?"
@@ -63,4 +63,5 @@ laptop.
 :::
 
 Note: Four commands, whole story: health, CVEs, what to move to, and does it pass.
-That last one runs the same in CI. Pairs beautifully with Hardened Images.
+That last one runs the same in CI. And notice the recommendation — "move to a
+smaller, safer base" — sets up the next capability perfectly.

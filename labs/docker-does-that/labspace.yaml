@@ -8,9 +8,9 @@ description: "Five Docker capabilities you may not know about — a developer's 
 
 catalog:
   title: "Docker does that?! — Slides"
-  description: "Sandboxes, Testcontainers, Hardened Images, Scout, Compose — in one morning."
+  description: "Gordon, Testcontainers, Scout, Hardened Images, Sandboxes — in one morning."
   icon: slideshow
-  tags: ["docker", "slides", "sandboxes", "testcontainers", "scout", "compose"]
+  tags: ["docker", "slides", "gordon", "testcontainers", "scout", "hardened-images", "sandboxes"]
   estimatedMinutes: 30
   # Deck first on the landing page, the getting-started lab after it.
   order: 1
@@ -21,9 +21,9 @@ version: "1.0.0"
 theme: light
 
 # Branded chrome, set once. Slides override or drop it with `chrome: false`.
+# No deck-wide eyebrow — section/opener slides set their own where wanted.
 brand:
   logo: assets/docker-logo-deep-blue.svg
-  eyebrow: "Docker does that?!"
   source: "DOCKER · A developer's morning"
 
 # `slides:` is an alias of `sections:` — one file per chapter, each split into
@@ -31,15 +31,15 @@ brand:
 slides:
   - title: Opening
     contentPath: 00-opening.md
-  - title: Sandboxes
-    contentPath: 01-sandboxes.md
+  - title: Gordon
+    contentPath: 01-gordon.md
   - title: Testcontainers
     contentPath: 02-testcontainers.md
-  - title: Hardened Images
-    contentPath: 03-hardened-images.md
   - title: Scout
-    contentPath: 04-scout.md
-  - title: Compose
-    contentPath: 05-compose.md
+    contentPath: 03-scout.md
+  - title: Hardened Images
+    contentPath: 04-hardened-images.md
+  - title: Sandboxes
+    contentPath: 05-sandboxes.md
   - title: Close
     contentPath: 06-close.md

@@ -1,6 +1,6 @@
 <!--
 layout: title
-byline: "Kristiyan Velkov · Ajeet Singh Raina"
+source: ""
 -->
 
 # Docker does that?!
@@ -134,17 +134,46 @@ an image and ship it. That was a complete answer in 2020. It isn't anymore.
 
 ---
 
+<!-- layout: split -->
+
+# Meet **Max** — and his task for the morning
+
+<!-- region -->
+
+:::card{label="The task" accent=blue variant=fill}
+Containerize the **Product Catalog** sample app — **following best practices**.
+:::
+
+One service, several real dependencies. We'll follow Max through one morning and
+drop each capability in where he'd actually reach for it.
+
+<!-- region -->
+
+:tag[Application]{accent=blue} → :tag[PostgreSQL]{accent=green} · product data
+
+:tag[Application]{accent=blue} → :tag[AWS S3]{accent=green} · product images
+
+:tag[Kafka]{accent=green} → product updates → :tag[Inventory service]{accent=blue}
+
+Note: Meet Max, our developer. His job this morning: containerize the Product
+Catalog app the right way. It's a realistic shape — an app, Postgres, object
+storage, a message broker, a downstream service. Keep this diagram in mind; every
+capability maps to a real moment in this build.
+
+---
+
 # One developer. One morning. Five surprises.
 
 | Time  | Capability          | What it solves                          |
 | ----- | ------------------- | --------------------------------------- |
-| 09:00 | **Sandboxes**       | Pair with an AI agent — safely.         |
+| 09:00 | **Gordon**          | An AI assistant that *understands* Docker. |
 | 09:45 | **Testcontainers**  | A real database in your tests.          |
-| 10:30 | **Hardened Images** | Base images arrive already patched.     |
-| 11:15 | **Scout**           | Know what's inside; enforce policy.     |
-| 12:00 | **Compose**         | Watch + jobs. Then lunch.               |
+| 10:30 | **Docker Scout**    | Know what's inside; enforce policy.     |
+| 11:15 | **Hardened Images** | Base images arrive already patched.     |
+| 12:00 | **Sandboxes**       | Pair with an AI agent — safely.         |
 
 Maps onto **Build · Run · Share · Security** — the platform picture you just saw.
 
 Note: Here's the morning. Roughly 4–5 minutes each. Don't memorize the clock — it's
-a spine so each capability shows up when you'd actually reach for it.
+a spine so each capability shows up when you'd actually reach for it. Gordon at
+nine, sandboxes right before lunch.

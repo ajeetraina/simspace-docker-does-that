@@ -1,0 +1,144 @@
+version: "2.0"
+
+metadata:
+  id: docker-does-that-lab
+  title: "Docker does that?! — Hands-on"
+  summary: "Five Docker capabilities on one product-catalog app."
+
+# In-memory state. Scenarios read it in `when.state` and write it in `then.state`.
+state:
+  hardened: false
+
+settings:
+  pace:
+    pull: 900     # simulated layer / image download
+    boot: 700     # simulated microVM boot
+
+defaults:
+  unmatched:
+    stderr: ["Error: that command isn't part of this lab yet."]
+    exit: 1
+
+scenarios:
+  # ── Page 1 · Gordon ────────────────────────────────────────────────────────
+  # `docker ai "<prompt>"` — Gordon inspects the repo and scaffolds the stack.
+  - id: gordon-containerize
+    completes: containerize-with-gordon
+    when:
+      command: [docker, ai]
+      args:
+        0: { any: true }
+    then:
+      output:
+        - { text: "Gordon is analyzing your project…", delay: short }
+        - "Detected: Node.js service + PostgreSQL, Kafka, and S3 dependencies."
+        - ""
+        - "Your product catalog app is now containerized. I created three files:"
+        - "  1. .dockerignore  — excludes node_modules, tests, .git"
+        - "  2. Dockerfile     — multi-stage, Node 20 Alpine, non-root, healthcheck (~270MB)"
+        - "  3. compose.yaml   — app + postgres + kafka + localstack (S3) + mock inventory"
+        - ""
+        - "Run `docker compose up` to bring the whole stack up."
+
+  # ── Page 2 · Testcontainers ────────────────────────────────────────────────
+  # `go test ./...` — a real Postgres spins up per run, then is torn down.
+  - id: run-tests
+    completes: run-tests
+    when:
+      command: [go, test]
+    then:
+      output:
+        - { text: "🐳 Pulling postgres:17-alpine …", delay: pull }
+        - { text: "🐳 Container postgres:17-alpine  Started", delay: short }
+        - "=== RUN   TestProducts"
+        - "    connected to a real Postgres — no mocks"
+        - "--- PASS: TestProducts (1.84s)"
+        - { text: "🐳 Container postgres:17-alpine  Terminated", delay: short }
+        - "PASS"
+        - "ok      product-catalog/orders   2.11s"
+
+  # ── Page 3 · Docker Scout ──────────────────────────────────────────────────
+  - id: scout-quickview
+    completes: scout-quickview
+    when:
+      command: [docker, scout, quickview]
+    then:
+      output:
+        - "  Target     my-app:latest"
+        - "  Critical  0   High  2   Medium  14   Low  31"
+
+  - id: scout-cves
+    when:
+      command: [docker, scout, cves]
+    then:
+      output:
+        - "  Analyzing image my-app:latest"
+        - "  47 vulnerabilities found in 12 packages (SBOM attached)"
+        - "  ↳ CVE-2024-xxxx  HIGH   openssl  3.0.11"
+
+  - id: scout-recommendations
+    when:
+      command: [docker, scout, recommendations]
+    then:
+      output:
+        - "  ↳ base image node:20  →  node:20-slim   (removes 41 CVEs)"
+        - "  ↳ consider a hardened base: dhi.io/node:20  (near-zero CVEs)"
+
+  - id: scout-policy
+    completes: scout-policy
+    when:
+      command: [docker, scout, policy]
+    then:
+      output:
+        - "  Evaluating my-app:latest against org policy…"
+        - "  ✗ No high or critical vulnerabilities   FAILED (2 high)"
+        - "  ✓ Supply chain attestations present     PASSED"
+        - ""
+        - "  Policy FAILED — switch to a hardened base to pass."
+
+  # ── Page 4 · Hardened Images ───────────────────────────────────────────────
+  # Building after the FROM swap uses the hardened base.
+  - id: build-hardened
+    completes: build-hardened
+    when:
+      command: [docker, build]
+    then:
+      state: { hardened: true }
+      output:
+        - { text: "=> [internal] load build definition from Dockerfile", delay: short }
+        - { text: "=> FROM dhi.io/node:20  (patched · minimal · signed)", delay: pull }
+        - "=> [1/4] WORKDIR /app"
+        - "=> [2/4] COPY --chown=app:app . ."
+        - "=> [3/4] RUN npm ci --omit=dev"
+        - "=> [4/4] USER app"
+        - "=> exporting to image"
+        - "=> => naming to my-app:latest"
+        - ""
+        - "Built my-app:latest on a hardened base — SBOM + SLSA L3 provenance attached."
+
+  # Re-check after the swap — the CVE count collapses.
+  - id: scout-after-hardened
+    when:
+      command: [docker, scout, quickview]
+      state: { hardened: true }
+    then:
+      output:
+        - "  Target     my-app:latest  (dhi.io/node:20)"
+        - "  Critical  0   High  0   Medium  0   Low  1"
+        - "  Policy: PASSED ✓"
+
+  # ── Page 5 · Sandboxes ─────────────────────────────────────────────────────
+  - id: sbx-run
+    completes: run-sandbox
+    when:
+      command: [sbx, run]
+      args:
+        0: { any: true }
+    then:
+      output:
+        - { text: "Booting microVM (own kernel · own dockerd)…", delay: boot }
+        - "  ✔ microVM booted"
+        - "  ✔ network policy: deny-by-default"
+        - "  ✔ secrets: OS keychain → proxy (nothing written to VM)"
+        - ""
+        - "agent '{{ args.0 }}' is live. It can edit your code — and nothing else."

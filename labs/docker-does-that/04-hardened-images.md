@@ -1,14 +1,14 @@
 <!--
 layout: section
-eyebrow: "10:30 — build the image"
+eyebrow: "11:15 — ship with secure images"
 -->
 
 # You type `FROM node:20`
 
 …and inherit a few hundred packages you never asked for.
 
-Note: After the tests, you package the service. First line of the Dockerfile pulls
-a full base image — and with it a shell, a package manager, and hundreds of
+Note: Scout just told you the base is the problem. First line of the Dockerfile
+pulls a full base image — and with it a shell, a package manager, and hundreds of
 libraries you'll never use but now have to patch.
 
 ---
@@ -54,7 +54,7 @@ now free and open under Apache 2.0.
 # FROM node:20
 
 # after — hardened base: patched + minimal + signed
-FROM docker.io/dhi/node:20
+FROM dhi.io/node:20
 
 WORKDIR /app
 COPY --chown=app:app . .
@@ -71,5 +71,5 @@ job.
 :::
 
 Note: Adoption is usually just swapping the FROM line. Same Dockerfile shape.
-Multi-stage and non-root patterns still apply. The point: you stop owning
-base-image CVEs.
+Multi-stage and non-root patterns still apply. Re-run Scout after the swap and the
+CVE count drops off a cliff — the two capabilities pair perfectly.

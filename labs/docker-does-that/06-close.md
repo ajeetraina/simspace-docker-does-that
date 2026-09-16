@@ -7,17 +7,17 @@ eyebrow: "The whole morning"
 
 | Fits under | Capability          | In one line                              |
 | ---------- | ------------------- | ---------------------------------------- |
-| Run        | **Sandboxes**       | A trust boundary around your agents.     |
+| Build      | **Gordon**          | An AI assistant that understands Docker. |
 | Build      | **Testcontainers**  | Real dependencies in your tests.         |
+| Security   | **Docker Scout**    | Know what's inside; enforce policy.      |
 | Build      | **Hardened Images** | Base images arrive patched.              |
-| Security   | **Scout**           | Know what's inside; enforce policy.      |
-| Run        | **Compose**         | Watch + first-class jobs.                |
+| Run        | **Sandboxes**       | A trust boundary around your agents.     |
 
 Build · Run · Share · Security — the same platform picture, made concrete.
 
-Note: Recap the morning mapped back to the platform picture. Sandboxes and Compose
-on the run side, Testcontainers and Hardened Images on build, Scout as security
-across all of it.
+Note: Recap the morning mapped back to the platform picture. Gordon, Testcontainers
+and Hardened Images on the build side, Sandboxes on run, Scout as security across
+all of it.
 
 ---
 
@@ -47,11 +47,11 @@ tomorrow.
 
 **Docker does that. Now you know.**
 
-- Sandboxes — the `sbx` CLI & docs
+- Gordon — `docker ai` & Docker Desktop
 - Testcontainers — testcontainers.com
-- Hardened Images — docker.com/products/hardened-images
 - Scout — `docker scout` & Docker Desktop
-- Compose — docs.docker.com/compose
+- Hardened Images — docker.com/products/hardened-images
+- Sandboxes — the `sbx` CLI & docs
 
 Kristiyan Velkov · `@krisvelkov`
 Ajeet Singh Raina · `@ajeetsraina`
@@ -60,4 +60,21 @@ Ajeet Singh Raina · `@ajeetsraina`
 
 ![QR code to the slides and links](assets/qr.png)
 
-Note: Thank them, leave links up, point the QR at the repo/slides. Take questions.
+Note: Thank them, leave links up, point the QR at the repo/slides.
+
+---
+
+<!--
+layout: section
+theme: dark
+eyebrow: "Over to you"
+logo: assets/docker-logo-white.svg
+-->
+
+# Q&A
+
+What would you reach for first — before lunch?
+
+Note: Open the floor. Common questions: how sandboxes differ from a plain
+container, whether DHI needs a paid plan (no — 1,000+ are free), and how Scout
+policy plugs into existing CI.
