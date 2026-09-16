@@ -15,19 +15,6 @@ free to try.
 ---
 
 <!--
-layout: image
-image: assets/ecosystem-grid.png
-alt: "A grid of technology logos — Docker provides an entire ecosystem of building blocks"
-chrome: false
--->
-
-Note: When people think "Docker" they think one whale and one Dockerfile. But this
-is the reality — an entire ecosystem of building blocks. Hold this thought: it's
-bigger than "package my app."
-
----
-
-<!--
 layout: split
 theme: dark
 eyebrow: "Whale, hello there 👋"
@@ -56,6 +43,52 @@ Docker."
 :::
 
 Note: Quick hellos, then straight into the platform — no long intros.
+
+---
+
+<!-- layout: split -->
+
+# Agenda
+
+<!-- region -->
+
+:::card{label="01" accent=blue variant=fill}
+**Gordon**
+:::
+
+:::card{label="02" accent=blue variant=fill}
+**Testcontainers**
+:::
+
+:::card{label="03" accent=blue variant=fill}
+**Docker Scout**
+:::
+
+<!-- region -->
+
+:::card{label="04" accent=blue variant=fill}
+**Docker Hardened Images (DHI)**
+:::
+
+:::card{label="05" accent=blue variant=fill}
+**Docker Sandboxes and MCP**
+:::
+
+Note: Five stops this morning. Gordon, Testcontainers, Scout, Hardened Images, and
+Sandboxes. Each one is something Docker quietly grew into that you can use today.
+
+---
+
+<!--
+layout: image
+image: assets/ecosystem-grid.png
+alt: "A grid of technology logos — Docker provides an entire ecosystem of building blocks"
+chrome: false
+-->
+
+Note: When people think "Docker" they think one whale and one Dockerfile. But this
+is the reality — an entire ecosystem of building blocks. Hold this thought: it's
+bigger than "package my app."
 
 ---
 
@@ -103,6 +136,18 @@ Docker does that?" stuff has landed in the last year.
 ---
 
 <!--
+layout: image
+image: assets/build-test-run-ship.png
+alt: "Build. Test. Run. Ship. — the developer lifecycle, end to end"
+chrome: false
+-->
+
+Note: Build, test, run, ship — the whole loop. Keep this arc in mind; the five
+capabilities each land on one of these beats.
+
+---
+
+<!--
 layout: section
 theme: dark
 eyebrow: "The shift"
@@ -115,7 +160,20 @@ It's an **AI company** — the platform to build, run, and ship agents, securely
 
 Note: Say it plainly and let it land. For a decade we knew Docker as the container
 company. That's no longer the whole story. The five things I'm about to show you
-are the proof, not the pitch.
+are the proof, not the pitch. Model Runner, Compose, MCP Toolkit — the AI building
+blocks now ship in the box.
+
+---
+
+<!--
+layout: image
+image: assets/the-shift-illustrated.png
+alt: "The shift — Docker as an AI company: model runner, compose, mcp toolkit"
+chrome: false
+-->
+
+Note: The same message, shown as the developer's mental model — build, run, ship
+agents, with Model Runner, Compose, and the MCP Toolkit doing the heavy lifting.
 
 ---
 
@@ -134,9 +192,27 @@ an image and ship it. That was a complete answer in 2020. It isn't anymore.
 
 ---
 
+# One developer. One morning. Five surprises.
+
+| Time  | Capability          | What it solves                          |
+| ----- | ------------------- | --------------------------------------- |
+| 09:00 | **Gordon**          | An AI assistant that *understands* Docker. |
+| 09:45 | **Testcontainers**  | A real database in your tests.          |
+| 10:30 | **Docker Scout**    | Know what's inside; enforce policy.     |
+| 11:15 | **Hardened Images** | Base images arrive already patched.     |
+| 12:00 | **Sandboxes**       | Pair with an AI agent — safely.         |
+
+Maps onto **Build · Run · Share · Security** — the platform picture you just saw.
+
+Note: Here's the morning. Roughly 4–5 minutes each. Don't memorize the clock — it's
+a spine so each capability shows up when you'd actually reach for it. Gordon at
+nine, sandboxes right before lunch.
+
+---
+
 <!-- layout: split -->
 
-# Meet **Max** — and his task for the morning
+# **TASK:** Max should containerize the Product Catalog app
 
 <!-- region -->
 
@@ -144,8 +220,8 @@ an image and ship it. That was a complete answer in 2020. It isn't anymore.
 Containerize the **Product Catalog** sample app — **following best practices**.
 :::
 
-One service, several real dependencies. We'll follow Max through one morning and
-drop each capability in where he'd actually reach for it.
+One service, several real dependencies. We'll follow **Max** through one morning
+and drop each capability in where he'd actually reach for it.
 
 <!-- region -->
 
@@ -162,18 +238,12 @@ capability maps to a real moment in this build.
 
 ---
 
-# One developer. One morning. Five surprises.
+<!--
+layout: image
+image: assets/the-plan-illustrated.png
+alt: "The plan — one developer (Max), one morning, five surprises, then lunch"
+chrome: false
+-->
 
-| Time  | Capability          | What it solves                          |
-| ----- | ------------------- | --------------------------------------- |
-| 09:00 | **Gordon**          | An AI assistant that *understands* Docker. |
-| 09:45 | **Testcontainers**  | A real database in your tests.          |
-| 10:30 | **Docker Scout**    | Know what's inside; enforce policy.     |
-| 11:15 | **Hardened Images** | Base images arrive already patched.     |
-| 12:00 | **Sandboxes**       | Pair with an AI agent — safely.         |
-
-Maps onto **Build · Run · Share · Security** — the platform picture you just saw.
-
-Note: Here's the morning. Roughly 4–5 minutes each. Don't memorize the clock — it's
-a spine so each capability shows up when you'd actually reach for it. Gordon at
-nine, sandboxes right before lunch.
+Note: The same plan, the fun version — Max's morning from Gordon at nine to
+sandboxes at noon, then lunch. Build, run, share, security, together.

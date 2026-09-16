@@ -47,20 +47,29 @@ tomorrow.
 
 **Docker does that. Now you know.**
 
-- Gordon — `docker ai` & Docker Desktop
-- Testcontainers — testcontainers.com
-- Scout — `docker scout` & Docker Desktop
-- Hardened Images — docker.com/products/hardened-images
-- Sandboxes — the `sbx` CLI & docs
-
-Kristiyan Velkov · `@krisvelkov`
-Ajeet Singh Raina · `@ajeetsraina`
+- ✓ Gordon — `docker ai` & Docker Desktop
+- ✓ Testcontainers — testcontainers.com
+- ✓ Scout — `docker scout` & Docker Desktop
+- ✓ Hardened Images — docker.com/products/hardened-images
+- ✓ Sandboxes — the `sbx` CLI & docs
 
 <!-- region -->
 
 ![QR code to the slides and links](assets/qr.png)
 
 Note: Thank them, leave links up, point the QR at the repo/slides.
+
+---
+
+<!--
+layout: image
+image: assets/task-complete.png
+alt: "Task complete! The Product Catalog stack is running — time for lunch"
+chrome: false
+-->
+
+Note: Max's morning, done — the whole stack up and healthy, the app serving, and
+it's lunchtime. Good code tastes better.
 
 ---
 
@@ -78,3 +87,34 @@ What would you reach for first — before lunch?
 Note: Open the floor. Common questions: how sandboxes differ from a plain
 container, whether DHI needs a paid plan (no — 1,000+ are free), and how Scout
 policy plugs into existing CI.
+
+---
+
+<!--
+layout: split
+theme: dark
+eyebrow: "Connect with us"
+-->
+
+# Connect with us
+
+<!-- region -->
+
+:::card{label="Docker Captain" accent=blue variant=fill}
+**Kristiyan Velkov**
+
+- 𝕏 `@krisvelkov`
+- in Kristiyan Velkov
+:::
+
+<!-- region -->
+
+:::card{label="Developer Advocate" accent=blue variant=fill}
+**Ajeet Singh Raina**
+
+- 𝕏 `@ajeetsraina`
+- in Ajeet Singh Raina
+:::
+
+Note: Point them at both of us — questions, slides, and the repo. Thanks for
+spending the morning with us.
