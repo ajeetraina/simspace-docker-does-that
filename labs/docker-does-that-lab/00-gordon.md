@@ -3,14 +3,48 @@
 It's **09:00**. You're **Max**, and your task for the morning is to containerize the
 **Product Catalog** app — following best practices.
 
-A generic coding agent will happily *guess* at a Dockerfile — and hand you a bloated,
-root-running, single-stage mess. Instead, ask the assistant that actually knows
-Docker: **Gordon**, built into Docker Desktop and the `docker` CLI.
+## Meet the Product Catalog
+
+A Node.js / Express service backing an online store — and it doesn't stand alone.
+It talks to a database, an event bus, and object storage:
+
+```text no-run-button
+                         GET /products
+                              │
+                              ▼
+                   ┌──────────────────────┐
+                   │   Product Catalog     │
+                   │   Node.js · Express   │
+                   └───────────┬──────────┘
+             ┌─────────────────┼──────────────────┐
+             ▼                 ▼                   ▼
+     ┌──────────────┐  ┌──────────────┐  ┌────────────────────┐
+     │  PostgreSQL  │  │    Kafka     │  │       AWS S3        │
+     │ product data │  │ update events│  │  product images    │
+     └──────────────┘  └──────────────┘  │  (LocalStack · dev) │
+                                          └────────────────────┘
+             └───────────────▶ Inventory service (downstream · mocked in dev)
+```
 
 Take a look at what Max is starting with:
 :filelink[README.md]{path="README.md"} · :filelink[server.js]{path="server.js"} · :filelink[package.json]{path="package.json"}
 
+## A project with no container in sight
+
+List the repo. It's **source only** — everything to *run* the app, nothing to
+*ship* it:
+
+```bash
+tree
+```
+
+No `Dockerfile`, no `compose.yaml`. That's Max's job this morning.
+
 ## Ask Gordon to containerize the app
+
+A generic coding agent will happily *guess* at a Dockerfile — and hand you a bloated,
+root-running, single-stage mess. Instead, ask the assistant that actually knows
+Docker: **Gordon**, built into Docker Desktop and the `docker` CLI.
 
 The **Run** button types the command into the terminal and executes it:
 
