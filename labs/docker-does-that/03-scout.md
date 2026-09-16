@@ -1,65 +1,43 @@
 <!--
-layout: section
-eyebrow: "10:30 — before you push"
+layout: image
+image: assets/slide-23.png
+alt: "10:30 - before you push: what's actually inside this image? And does it meet the bar our security team set?"
+chrome: false
 -->
 
-# "What's actually inside this image?"
-
-And does it meet the bar our security team set?
-
 Note: Image built. Before you push it, the honest question: what's in it, and is it
-allowed to ship? Most of us have no fast way to answer that.
+allowed to ship?
 
 ---
 
-# The problem
+<!--
+layout: image
+image: assets/slide-24.png
+alt: "Docker Scout - simplifying and securing the software supply chain: quickview, cves, recommendations, policy evaluation"
+chrome: false
+-->
 
-:::card{label="Black box" accent=red variant=fill}
-An image is layers of software from many sources. Which packages? Which CVEs? Does
-it violate a policy — no root, no critical CVEs, must have an SBOM? You usually find
-out **after** it ships.
-:::
-
-Note: An image is a black box of software from many sources. Usually you learn the
-answer in production, from someone else, badly.
-
----
-
-# Docker **Scout**
-
-Look inside any image — from the CLI or Docker Desktop — and turn "hope it's fine"
-into a **policy check**.
-
-- `quickview` — instant health summary
-- `cves` — full vulnerability breakdown + SBOM
-- `recommendations` — a safer base/tag to move to
-- **Policy evaluation** — pass/fail against your org's rules, locally and in CI
-
-Note: Scout answers the question. quickview for a fast read, cves for the full list
-with an SBOM, recommendations for the better base, and policy evaluation so "meets
-the bar" is a pass/fail, not a vibe.
+Note: Scout answers the question - health, CVEs + SBOM, a safer base, and policy
+pass/fail locally and in CI.
 
 ---
 
-# From "what's in it" to "does it pass"
+<!--
+layout: image
+image: assets/slide-25.png
+alt: "From what's in it to does it pass - docker scout quickview, recommendations, and policy output"
+chrome: false
+-->
 
-```bash
-$ docker scout quickview my-app:latest
-  Critical  0   High  2   Medium  14   Low  31
+Note: Four commands, whole story. That last one runs the same in CI.
 
-$ docker scout recommendations my-app:latest
-  ↳ base image node:20  →  node:20-slim   (removes 41 CVEs)
+---
 
-$ docker scout policy my-app:latest        # pass / fail in CI
-  ✗ No high or critical vulnerabilities   FAILED (2 high)
-  ✓ Supply chain attestations present     PASSED
-```
+<!--
+layout: image
+image: assets/slide-26.png
+alt: "The problem - an image is a black box of software from many sources; you usually find out after it ships"
+chrome: false
+-->
 
-:::card{label="Takeaway" accent=blue variant=fill}
-Know exactly what you ship — and **gate it on policy** before it ever leaves your
-laptop.
-:::
-
-Note: Four commands, whole story: health, CVEs, what to move to, and does it pass.
-That last one runs the same in CI. And notice the recommendation — "move to a
-smaller, safer base" — sets up the next capability perfectly.
+Note: An image is a black box. Usually you learn the answer in production, badly.

@@ -1,11 +1,11 @@
-title: "Docker does that?! — Hands-on"
+title: "Docker does that?! - Hands-on"
 description: "Five Docker capabilities, one product-catalog app: Gordon, Testcontainers, Scout, Hardened Images, Sandboxes."
 
-# Catalog card — shown on the landing page (this repo has more than one entry).
+# Catalog card - shown on the landing page (this repo has more than one entry).
 # labs.json is GENERATED from this block; never edit labs.json by hand.
 catalog:
-  title: "Docker does that?! — Hands-on Lab"
-  description: "Containerize the Product Catalog app the modern way — an AI assistant, real test dependencies, image policy, hardened bases, and a sandboxed agent."
+  title: "Docker does that?! - Hands-on Lab"
+  description: "Containerize the Product Catalog app the modern way - an AI assistant, real test dependencies, image policy, hardened bases, and a sandboxed agent."
   icon: labs
   tags: ["docker", "gordon", "testcontainers", "scout", "hardened-images", "sandboxes"]
   estimatedMinutes: 30
@@ -20,7 +20,7 @@ terminals:
     title: Terminal
     icon: terminal
 
-# Seed the virtual filesystem — the Product Catalog sample app Max is working on.
+# Seed the virtual filesystem - the Product Catalog sample app Max is working on.
 # Built-in `ls`/`cat` and :filelink reflect these immediately.
 files:
   README.md: |
@@ -29,10 +29,10 @@ files:
     A Node.js service backing an online store's product catalog.
 
     Dependencies:
-      - PostgreSQL  — product data
-      - AWS S3      — product images (LocalStack in dev)
-      - Kafka       — product-update events
-      - Inventory   — downstream service (mocked in dev)
+      - PostgreSQL  - product data
+      - AWS S3      - product images (LocalStack in dev)
+      - Kafka       - product-update events
+      - Inventory   - downstream service (mocked in dev)
 
     Max's task this morning: containerize it, following best practices.
   package.json: |
@@ -63,7 +63,7 @@ files:
 
     app.listen(3000, () => console.log("Product Catalog listening on :3000"));
   Dockerfile: |
-    # before — full base, you own the patching
+    # before - full base, you own the patching
     FROM node:20
 
     WORKDIR /app
@@ -88,37 +88,37 @@ files:
         // ...run real queries against a real engine...
     }
 
-# Ordered instruction pages. `steps:` are each section's MILESTONES — completed by a
+# Ordered instruction pages. `steps:` are each section's MILESTONES - completed by a
 # scenario in simulator.yaml tagged `completes: <id>`. They drive the nav
 # check-marks, saved progress, and the instructor funnel.
 sections:
-  - title: "Gordon — the AI assistant"
+  - title: "Gordon - the AI assistant"
     contentPath: 00-gordon.md
     steps:
       - id: containerize-with-gordon
         title: "Ask Gordon to containerize the app"
       - id: run-the-stack
         title: "Bring the whole stack up"
-  - title: "Testcontainers — real deps in tests"
+  - title: "Testcontainers - real deps in tests"
     contentPath: 01-testcontainers.md
     steps:
       - id: run-tests
         title: "Run tests against a real Postgres"
-  - title: "Docker Scout — what's inside"
+  - title: "Docker Scout - what's inside"
     contentPath: 02-scout.md
     steps:
       - id: scout-quickview
         title: "Look inside the image"
       - id: scout-policy
         title: "Gate the image on policy"
-  - title: "Hardened Images — patched bases"
+  - title: "Hardened Images - patched bases"
     contentPath: 03-hardened-images.md
     steps:
       - id: harden-dockerfile
         title: "Swap to a hardened base image"
       - id: build-hardened
         title: "Build on the hardened base"
-  - title: "Sandboxes — isolate the agent"
+  - title: "Sandboxes - isolate the agent"
     contentPath: 04-sandboxes.md
     steps:
       - id: run-sandbox

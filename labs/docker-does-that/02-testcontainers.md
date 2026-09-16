@@ -1,80 +1,56 @@
 <!--
-layout: section
-eyebrow: "09:45 — time to write tests"
+layout: image
+image: assets/slide-18.png
+alt: "09:45 - Max needs a database to test the app. A mock? Or the shared staging DB everyone fights over?"
+chrome: false
 -->
 
-# Your test needs a database.
-
-So… a mock? Or that shared staging DB everyone fights over?
-
 Note: The feature works; now the tests. It touches Postgres. Two bad-but-common
-options: mock the database, or point at a shared test DB. Both hurt.
+options: mock it, or point at a shared test DB.
 
 ---
 
-<!-- layout: split -->
+<!--
+layout: image
+image: assets/slide-19.png
+alt: "Testcontainers - bringing the power of containers directly into the testing process"
+chrome: false
+-->
 
-# The problem
-
-<!-- region -->
-
-:tag[Mocks]{accent=red}
-
-Drift from the real engine. Green tests, broken prod. You end up testing your mock,
-not your query.
-
-<!-- region -->
-
-:tag[Shared infra]{accent=red}
-
-Flaky, stateful, contended. One person's migration breaks everyone. "Works after I
-re-seed."
-
-Note: Mocks drift — you're testing your assumptions, not the database. Shared infra
-is flaky and contended. What you want is the real engine, but throwaway.
+Note: An open-source library on the Docker API - real, ephemeral service instances
+inside your test suite, no mocks.
 
 ---
 
-# Testcontainers
+<!--
+layout: image
+image: assets/slide-20.png
+alt: "The problem - mocks drift from the real engine; shared test infra is flaky and contended"
+chrome: false
+-->
 
-Spin up a **real** dependency as a container **from inside your test suite**. It
-starts before your tests, your code connects to it, and it's torn down
-automatically after. Now a Docker project.
-
-`Java` · `Go` · `Python` · `Node.js` · `.NET` · `Rust` — Postgres · Kafka · Redis · …
-
-Note: Testcontainers puts a real database inside the test suite. It boots the
-container, hands your test a connection string, and cleans up after. Libraries for
-every major language. Docker acquired the project — it's first-party now.
+Note: You want the real Postgres, Kafka, Redis - but disposable, isolated, gone
+when the test ends.
 
 ---
 
-# Real Postgres, per test run
+<!--
+layout: image
+image: assets/slide-21.png
+alt: "Testcontainers - spin up a real dependency from inside your test suite. Java, Go, Python, Node.js, .NET, Rust."
+chrome: false
+-->
 
-```go filename=orders_test.go
-func TestProducts(t *testing.T) {
-    ctx := context.Background()
+Note: It starts before your tests, your code connects, and it's torn down after.
+Now part of Docker.
 
-    // a real Postgres, started just for this test
-    pg, err := postgres.Run(ctx, "postgres:17-alpine",
-        postgres.WithDatabase("shop"),
-        postgres.WithUsername("test"),
-        postgres.WithPassword("test"),
-    )
-    require.NoError(t, err)
-    defer pg.Terminate(ctx)          // gone when the test ends
+---
 
-    dsn, _ := pg.ConnectionString(ctx, "sslmode=disable")
-    db := mustOpen(dsn)
-    // ...run your real queries against a real engine...
-}
-```
+<!--
+layout: image
+image: assets/slide-22.png
+alt: "Real Postgres, per test run - a Go example using postgres.Run and defer pg.Terminate"
+chrome: false
+-->
 
-:::card{label="Takeaway" accent=blue variant=fill}
-Stop maintaining mocks. Stop fighting shared infra. **Real dependencies, isolated
-per run.**
-:::
-
-Note: Look how little code. `postgres.Run` gives you a real engine; `defer
-Terminate` cleans it up. No compose to babysit, no shared state. Every run is clean.
-This gets the biggest "oh" from test-weary teams.
+Note: Look how little code. Real dependencies, isolated per run.

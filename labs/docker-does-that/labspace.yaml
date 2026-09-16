@@ -1,14 +1,14 @@
-# A SLIDE DECK — same manifest format as a lab, with `kind: slides`.
+# A SLIDE DECK - same manifest format as a lab, with `kind: slides`.
 # Deploys through the repo's existing Pages workflow and appears as a card on the
 # landing page alongside the getting-started lab.
 kind: slides
 
 title: "Docker does that?!"
-description: "Five Docker capabilities you may not know about — a developer's morning."
+description: "Five Docker capabilities you may not know about - a developer's morning."
 
 catalog:
-  title: "Docker does that?! — Slides"
-  description: "Gordon, Testcontainers, Scout, Hardened Images, Sandboxes — in one morning."
+  title: "Docker does that?! - Slides"
+  description: "Gordon, Testcontainers, Scout, Hardened Images, Sandboxes - in one morning."
   icon: slideshow
   tags: ["docker", "slides", "gordon", "testcontainers", "scout", "hardened-images", "sandboxes"]
   estimatedMinutes: 30
@@ -21,12 +21,12 @@ version: "1.0.0"
 theme: light
 
 # Branded chrome, set once. Slides override or drop it with `chrome: false`.
-# No deck-wide eyebrow — section/opener slides set their own where wanted.
+# No deck-wide eyebrow - section/opener slides set their own where wanted.
 brand:
   logo: assets/docker-logo-deep-blue.svg
   source: "DOCKER · A developer's morning"
 
-# `slides:` is an alias of `sections:` — one file per chapter, each split into
+# `slides:` is an alias of `sections:` - one file per chapter, each split into
 # individual slides on a `---` line.
 slides:
   - title: Opening
