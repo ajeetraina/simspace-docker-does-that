@@ -297,3 +297,39 @@ scenarios:
         - "  ✔ secrets: OS keychain → proxy (nothing written to VM)"
         - ""
         - "agent '{{ args.0 }}' is live. It can edit your code - and nothing else."
+
+  # Part 2 · Govern the tools the agent calls (Docker MCP Toolkit)
+  - id: mcp-catalog
+    when:
+      command: [docker, mcp, catalog]
+    then:
+      output:
+        - "NAME        DESCRIPTION                         PULLS   SIGNED"
+        - "github      GitHub API (issues, PRs, repos)     4.2M    ✔"
+        - "postgres    Query a PostgreSQL database         1.8M    ✔"
+        - "fetch       Fetch and read web pages            3.1M    ✔"
+        - "filesystem  Scoped local file access            2.6M    ✔"
+        - ""
+        - "200+ verified servers - signed and versioned, not `npx` from a random repo."
+
+  - id: mcp-enable
+    when:
+      command: [docker, mcp, server]
+    then:
+      output:
+        - "✔ Enabled 'github'   - runs in its own container"
+        - "✔ Enabled 'postgres' - runs in its own container"
+        - "Each server is isolated; pair with `sbx` and the tool is walled off too."
+
+  - id: mcp-gateway
+    completes: run-mcp-gateway
+    when:
+      command: [docker, mcp, gateway]
+    then:
+      output:
+        - { text: "Starting MCP gateway…", delay: short }
+        - "  ✔ gateway listening - one audited front door for every tool call"
+        - "  ✔ secrets injected from Docker (never pasted into agent config)"
+        - "  ✔ servers reachable: github, postgres  (each in its own container)"
+        - ""
+        - "Sandbox the agent (sbx) + govern its tools (MCP) - both halves closed."

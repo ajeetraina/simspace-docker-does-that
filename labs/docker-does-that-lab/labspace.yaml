@@ -118,8 +118,10 @@ sections:
         title: "Swap to a hardened base image"
       - id: build-hardened
         title: "Build on the hardened base"
-  - title: "Sandboxes - isolate the agent"
+  - title: "Sandboxes + MCP - isolate the agent and its tools"
     contentPath: 04-sandboxes.md
     steps:
       - id: run-sandbox
         title: "Run an agent in a sandbox"
+      - id: run-mcp-gateway
+        title: "Govern its tools with the MCP gateway"
