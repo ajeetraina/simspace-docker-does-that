@@ -62,6 +62,15 @@ files:
     });
 
     app.listen(3000, () => console.log("Product Catalog listening on :3000"));
+  Dockerfile: |
+    # before — full base, you own the patching
+    FROM node:20
+
+    WORKDIR /app
+    COPY --chown=app:app . .
+    RUN npm ci --omit=dev
+    USER app
+    CMD ["node", "server.js"]
   orders_test.go: |
     func TestProducts(t *testing.T) {
         ctx := context.Background()
@@ -105,8 +114,10 @@ sections:
   - title: "Hardened Images — patched bases"
     contentPath: 03-hardened-images.md
     steps:
+      - id: harden-dockerfile
+        title: "Swap to a hardened base image"
       - id: build-hardened
-        title: "Build on a hardened base"
+        title: "Build on the hardened base"
   - title: "Sandboxes — isolate the agent"
     contentPath: 04-sandboxes.md
     steps:

@@ -12,23 +12,38 @@ minimal**. Docker maintains them; you inherit the work:
 - Critical CVEs patched fast — Docker targets **~24 hours**
 - Now **free & open** (Apache 2.0) — 1,000+ images, built on Debian & Alpine
 
-Adoption is usually a **one-line change** in the :filelink[Dockerfile]{path="Dockerfile"}:
+## 1. Look at the current base
 
-```dockerfile no-run-button
-# before — you own the patching
-FROM node:20
+Gordon's :filelink[Dockerfile]{path="Dockerfile"} starts from the full `node:20`
+base — the one Scout flagged:
 
-# after — patched + minimal + signed
-FROM dhi.io/node:20
+```bash
+cat Dockerfile
 ```
 
-## Build on the hardened base
+## 2. Swap to a hardened base — a one-line change
+
+Adoption is usually **one line**: `FROM node:20` → `FROM dhi.io/node:20`. Apply it:
+
+```bash
+sed -i 's|node:20|dhi.io/node:20|' Dockerfile
+```
+
+Confirm the change landed — the base is now the patched, signed hardened image:
+
+```bash
+cat Dockerfile
+```
+
+## 3. Build on the hardened base
 
 ```bash
 docker build -t my-app:latest .
 ```
 
-Then re-run Scout — the CVE count that failed your policy collapses:
+## 4. Re-scan — the CVE count collapses
+
+The same Scout command that **failed** the policy on `node:20` now **passes**:
 
 ```bash
 docker scout quickview my-app:latest

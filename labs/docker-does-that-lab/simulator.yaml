@@ -173,14 +173,27 @@ scenarios:
         - "ok      product-catalog/orders   2.11s"
 
   # ── Page 3 · Docker Scout ──────────────────────────────────────────────────
+  # After the hardened swap, the SAME command shows the collapsed CVE count.
+  # Listed first so it takes precedence over the generic quickview below.
+  - id: scout-quickview-hardened
+    when:
+      command: [docker, scout, quickview]
+      state: { hardened: true }
+    then:
+      output:
+        - "  Target     my-app:latest  (dhi.io/node:20)"
+        - "  Critical  0   High  0   Medium  0   Low  1"
+        - "  Policy: PASSED ✓"
+
   - id: scout-quickview
     completes: scout-quickview
     when:
       command: [docker, scout, quickview]
     then:
       output:
-        - "  Target     my-app:latest"
+        - "  Target     my-app:latest  (node:20)"
         - "  Critical  0   High  2   Medium  14   Low  31"
+        - "  Policy: FAILED — 2 high, inherited from the base image."
 
   - id: scout-cves
     when:
@@ -212,35 +225,62 @@ scenarios:
         - "  Policy FAILED — switch to a hardened base to pass."
 
   # ── Page 4 · Hardened Images ───────────────────────────────────────────────
-  # Building after the FROM swap uses the hardened base.
+  # The one-line change: rewrite `FROM node:20` → `FROM dhi.io/node:20`.
+  # The command OVERWRITES the Dockerfile, so `cat Dockerfile` reflects the swap.
+  - id: harden-dockerfile
+    completes: harden-dockerfile
+    when:
+      command: [sed]
+    then:
+      state: { hardened: true }
+      files:
+        - create: Dockerfile
+          content: |
+            # after — hardened base: patched + minimal + signed
+            FROM dhi.io/node:20
+
+            WORKDIR /app
+            COPY --chown=app:app . .
+            RUN npm ci --omit=dev
+            USER app
+            CMD ["node", "server.js"]
+      output:
+        - "Dockerfile updated:  FROM node:20  →  FROM dhi.io/node:20"
+
+  # Build AFTER the swap — uses the hardened base. Listed before the plain build
+  # so it takes precedence once `hardened` is set.
   - id: build-hardened
     completes: build-hardened
     when:
       command: [docker, build]
-    then:
       state: { hardened: true }
+    then:
       output:
         - { text: "=> [internal] load build definition from Dockerfile", delay: short }
         - { text: "=> FROM dhi.io/node:20  (patched · minimal · signed)", delay: pull }
-        - "=> [1/4] WORKDIR /app"
-        - "=> [2/4] COPY --chown=app:app . ."
-        - "=> [3/4] RUN npm ci --omit=dev"
-        - "=> [4/4] USER app"
+        - "=> [1/3] WORKDIR /app"
+        - "=> [2/3] COPY --chown=app:app . ."
+        - "=> [3/3] RUN npm ci --omit=dev"
         - "=> exporting to image"
         - "=> => naming to my-app:latest"
         - ""
         - "Built my-app:latest on a hardened base — SBOM + SLSA L3 provenance attached."
 
-  # Re-check after the swap — the CVE count collapses.
-  - id: scout-after-hardened
+  # Build BEFORE the swap — still on the full node:20 base.
+  - id: build-plain
     when:
-      command: [docker, scout, quickview]
-      state: { hardened: true }
+      command: [docker, build]
     then:
       output:
-        - "  Target     my-app:latest  (dhi.io/node:20)"
-        - "  Critical  0   High  0   Medium  0   Low  1"
-        - "  Policy: PASSED ✓"
+        - { text: "=> [internal] load build definition from Dockerfile", delay: short }
+        - { text: "=> FROM node:20  (full base — you own the patching)", delay: pull }
+        - "=> [1/3] WORKDIR /app"
+        - "=> [2/3] COPY --chown=app:app . ."
+        - "=> [3/3] RUN npm ci --omit=dev"
+        - "=> exporting to image"
+        - "=> => naming to my-app:latest"
+        - ""
+        - "Built my-app:latest — still on node:20. Swap to a hardened base to drop the CVEs."
 
   # ── Page 5 · Sandboxes ─────────────────────────────────────────────────────
   - id: sbx-run
