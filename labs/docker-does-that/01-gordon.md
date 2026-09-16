@@ -67,7 +67,16 @@ multi-stage `Dockerfile` (Node 20 Alpine, non-root user, health check, ~270 MB),
 and a `compose.yaml` wiring the full dev stack: app, Postgres, Kafka, LocalStack
 (S3), and a mock inventory service.
 
-![Gordon containerizing the Product Catalog app in Docker Desktop](assets/gordon-desktop.png)
+<svg viewBox="0 0 900 130" width="100%" role="img" aria-label="Gordon reads the repo and generates three files: .dockerignore, a multi-stage Dockerfile, and compose.yaml.">
+  <g font-family="ui-sans-serif, system-ui, sans-serif">
+    <rect x="10" y="30" width="150" height="70" rx="12" fill="#0b214a"/><text x="85" y="62" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">docker ai</text><text x="85" y="84" text-anchor="middle" font-size="12" fill="#8fb6e6">reads the repo</text>
+    <polygon points="160,65 196,65 196,58 212,66 196,74 196,68 160,68" fill="#2496ed"/>
+    <rect x="222" y="12" width="220" height="46" rx="10" fill="#eaf2fd" stroke="#2496ed"/><text x="332" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#0b214a">.dockerignore</text>
+    <rect x="222" y="66" width="220" height="46" rx="10" fill="#eaf2fd" stroke="#2496ed"/><text x="332" y="94" text-anchor="middle" font-size="15" font-weight="700" fill="#0b214a">Dockerfile · multi-stage</text>
+    <rect x="222" y="120" width="220" height="0" rx="10" fill="none"/>
+    <rect x="460" y="39" width="430" height="52" rx="10" fill="#e6f4ea" stroke="#1a7f37"/><text x="675" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">compose.yaml</text><text x="675" y="81" text-anchor="middle" font-size="12" fill="#3f7a52">app · Postgres · Kafka · LocalStack (S3) · mock inventory</text>
+  </g>
+</svg>
 
 :::card{label="Takeaway" accent=blue variant=fill}
 Don't let a generic agent **guess** at Docker. Ask the one that **knows** it —

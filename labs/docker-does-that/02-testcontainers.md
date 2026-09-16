@@ -52,7 +52,7 @@ every major language. Docker acquired the project — it's first-party now.
 # Real Postgres, per test run
 
 ```go filename=orders_test.go
-func TestOrders(t *testing.T) {
+func TestProducts(t *testing.T) {
     ctx := context.Background()
 
     // a real Postgres, started just for this test

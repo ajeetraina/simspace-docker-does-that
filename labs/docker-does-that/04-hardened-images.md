@@ -63,7 +63,21 @@ USER app
 CMD ["node", "server.js"]
 ```
 
-![Docker Hardened Images catalog on Docker Hub](assets/dhi-catalog.png)
+<svg viewBox="0 0 900 170" width="100%" role="img" aria-label="Re-running Scout after the one-line FROM swap: node:20 shows 2 critical and 14 high CVEs; dhi.io/node:20 shows 0 critical and 0 high.">
+  <g font-family="ui-sans-serif, system-ui, sans-serif">
+    <rect x="10" y="14" width="420" height="142" rx="12" fill="#fdeaea" stroke="#d64545"/>
+    <text x="30" y="46" font-size="17" font-weight="800" fill="#7f1d1d">FROM node:20</text>
+    <text x="30" y="78" font-size="15" fill="#7f1d1d">shell · package manager · 100s of packages</text>
+    <text x="30" y="120" font-size="30" font-weight="800" fill="#d64545">2 Critical · 14 High</text>
+    <text x="30" y="144" font-size="13" fill="#a15252">Scout policy: FAILED</text>
+    <polygon points="440,85 476,85 476,76 496,86 476,96 476,87 440,87" fill="#2496ed"/>
+    <rect x="470" y="14" width="420" height="142" rx="12" fill="#e6f4ea" stroke="#1a7f37"/>
+    <text x="490" y="46" font-size="17" font-weight="800" fill="#14532d">FROM dhi.io/node:20</text>
+    <text x="490" y="78" font-size="15" fill="#14532d">distroless · signed · SBOM + SLSA L3</text>
+    <text x="490" y="120" font-size="30" font-weight="800" fill="#1a7f37">0 Critical · 0 High</text>
+    <text x="490" y="144" font-size="13" fill="#3f7a52">Scout policy: PASSED ✓</text>
+  </g>
+</svg>
 
 :::card{label="Takeaway" accent=blue variant=fill}
 Your base image arrives **pre-patched**. The CVE treadmill becomes someone else's

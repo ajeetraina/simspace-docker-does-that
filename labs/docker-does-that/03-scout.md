@@ -55,8 +55,6 @@ $ docker scout policy my-app:latest        # pass / fail in CI
   ✓ Supply chain attestations present     PASSED
 ```
 
-![docker scout quickview output](assets/scout-quickview.png)
-
 :::card{label="Takeaway" accent=blue variant=fill}
 Know exactly what you ship — and **gate it on policy** before it ever leaves your
 laptop.

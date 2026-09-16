@@ -11,7 +11,7 @@ eyebrow: "The whole morning"
 | Build      | **Testcontainers**  | Real dependencies in your tests.         |
 | Security   | **Docker Scout**    | Know what's inside; enforce policy.      |
 | Build      | **Hardened Images** | Base images arrive patched.              |
-| Run        | **Sandboxes**       | A trust boundary around your agents.     |
+| Run        | **Sandboxes + MCP** | A trust boundary around agents — and their tools. |
 
 Build · Run · Share · Security — the same platform picture, made concrete.
 
@@ -52,6 +52,7 @@ tomorrow.
 - ✓ Scout — `docker scout` & Docker Desktop
 - ✓ Hardened Images — docker.com/products/hardened-images
 - ✓ Sandboxes — the `sbx` CLI & docs
+- ✓ MCP Toolkit — curated, containerized MCP servers
 
 <!-- region -->
 
@@ -61,15 +62,41 @@ Note: Thank them, leave links up, point the QR at the repo/slides.
 
 ---
 
-<!--
-layout: image
-image: assets/task-complete.png
-alt: "Task complete! The Product Catalog stack is running — time for lunch"
-chrome: false
--->
+# Task complete 🐳
+
+<svg viewBox="0 0 900 180" width="100%" role="img" aria-label="Task complete: the Product Catalog stack is up and healthy — app, Postgres, Kafka, and S3 all running — and the service is serving on port 3000.">
+  <g font-family="ui-sans-serif, system-ui, sans-serif">
+    <circle cx="70" cy="70" r="40" fill="#1a7f37"/><path d="M50,70 l14,14 l26,-30" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="130" y="60" font-size="22" font-weight="800" fill="#0b214a">The stack is up and healthy</text>
+    <text x="130" y="90" font-size="15" fill="#475569">GET /products → 200 · serving on :3000</text>
+    <rect x="130" y="120" width="150" height="44" rx="10" fill="#e6f4ea" stroke="#1a7f37"/><text x="205" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#14532d">app ✔</text>
+    <rect x="292" y="120" width="150" height="44" rx="10" fill="#e6f4ea" stroke="#1a7f37"/><text x="367" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#14532d">postgres ✔</text>
+    <rect x="454" y="120" width="150" height="44" rx="10" fill="#e6f4ea" stroke="#1a7f37"/><text x="529" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#14532d">kafka ✔</text>
+    <rect x="616" y="120" width="150" height="44" rx="10" fill="#e6f4ea" stroke="#1a7f37"/><text x="691" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#14532d">s3 ✔</text>
+  </g>
+</svg>
 
 Note: Max's morning, done — the whole stack up and healthy, the app serving, and
 it's lunchtime. Good code tastes better.
+
+---
+
+<!--
+layout: section
+eyebrow: "Now you try it"
+-->
+
+# Do it yourself — the hands-on lab
+
+Everything Max did this morning is a **hands-on lab** next door: containerize with
+Gordon, run Testcontainers, scan with Scout, swap to a hardened base, and sandbox an
+agent — a simulated terminal, nothing to install.
+
+**→ "Docker does that?! — Hands-on Lab"** — the second card on this workshop's landing page.
+
+Note: Don't just watch — the companion lab lets everyone run the exact five
+capabilities in a browser terminal. Point them at the second card on the landing
+page. Great for the workshop slot right after this talk, or as self-paced follow-up.
 
 ---
 
