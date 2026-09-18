@@ -1,142 +1,104 @@
 <!--
 layout: image
 image: assets/slide-01.png
-alt: "Docker does that?! - Five Docker capabilities you may not know about"
+alt: "Docker does that?! - Five Docker capabilities you may not know about. WeAreDevelopers 2026."
 chrome: false
 -->
 
-Note: Welcome. Five things Docker can do that most people don't realize ship with
-the tools they already have - walked through one ordinary working morning.
+Note: Title. "Docker does that?!" - five Docker capabilities you may not know
+about. WeAreDevelopers 2026.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-02.png
-alt: "Meet your speakers - Kristiyan Velkov (Docker Captain) and Ajeet Singh Raina (Developer Advocate)"
+alt: "Meet your speakers - Kristiyan Velkov and Ajeet Singh Raina."
 chrome: false
 -->
 
-Note: Quick hellos, then straight into it.
+Note: Meet your speakers - Kristiyan Velkov (Docker Captain) and Ajeet Singh Raina
+(Developer Advocate).
 
 ---
 
 <!--
 layout: image
 image: assets/slide-03.png
-alt: "Agenda - Gordon, Testcontainers, Docker Scout, Docker Hardened Images (DHI), Docker Sandboxes and MCP"
+alt: "Agenda - Gordon, Testcontainers, Docker Scout, Hardened Images, Sandboxes."
 chrome: false
 -->
 
-Note: Five stops this morning.
+Note: Agenda - the five capabilities: Gordon, Testcontainers, Docker Scout,
+Hardened Images, and Sandboxes.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-04.png
-alt: "Docker provides you an entire ecosystem of building blocks"
+alt: "Docker Platform - build, run, and share software. Securely. Local and Cloud."
 chrome: false
 -->
 
-Note: Not one whale and one Dockerfile - an entire ecosystem of building blocks.
+Note: The Docker Platform - build, run, and share software, securely, across local
+and cloud.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-05.png
-alt: "Docker Platform - build, run, and share software, securely, local and cloud"
+alt: "Docker AI Platform - build, run, and share AI agents. Securely. Local and Cloud."
 chrome: false
 -->
 
-Note: The way to think about it today: a platform. Build, run, share - securely.
+Note: The Docker AI Platform - build, run, and share AI agents, securely, across
+local and cloud.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-06.png
-alt: "Docker AI Platform - build, run, and share AI agents, securely"
+alt: "The shift - Docker isn't just a container company anymore. It's an AI company building the platform to build, run, and ship agents securely."
 chrome: false
 -->
 
-Note: Same frame, one word changed: agents.
+Note: The shift - Docker isn't just a container company anymore. It's an AI company
+building the platform to build, run, and ship agents securely.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-07.png
-alt: "Build. Test. Run. Ship."
+alt: "The plan - one developer, Max, one morning, five surprises, from 09:00 to 12:00."
 chrome: false
 -->
 
-Note: The whole loop - build, test, run, ship.
+Note: The plan - one developer, Max. One morning. Five surprises, from 09:00
+through 12:00.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-08.png
-alt: "The shift - Docker isn't just a container company anymore. It's an AI company."
+alt: "Task - Max has been asked to containerize the Product Catalog sample app, following best practices."
 chrome: false
 -->
 
-Note: Say it plainly and let it land.
+Note: The task - Max has been asked to containerize the Product Catalog sample app,
+following the best practices.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-09.png
-alt: "The shift, illustrated - building the platform to build, run, and ship agents securely"
+alt: "Section transition into Max's morning."
 chrome: false
 -->
 
-Note: The same message as the developer's mental model.
-
----
-
-<!--
-layout: image
-image: assets/slide-10.png
-alt: "Most of us use Docker to package and ship an app - that answer was complete five years ago"
-chrome: false
--->
-
-Note: That was a complete answer in 2020. It isn't anymore.
-
----
-
-<!--
-layout: image
-image: assets/slide-11.png
-alt: "The plan - one developer (Max), one morning, five surprises: Gordon, Testcontainers, Docker Scout, Hardened Images, Sandboxes"
-chrome: false
--->
-
-Note: Here's the morning. Roughly 4-5 minutes each.
-
----
-
-<!--
-layout: image
-image: assets/slide-12.png
-alt: "Task - Max should containerize the Product Catalog sample app, following best practices"
-chrome: false
--->
-
-Note: Max's job this morning - containerize the Product Catalog app the right way.
-App, Postgres, S3, Kafka, a downstream inventory service.
-
----
-
-<!--
-layout: image
-image: assets/slide-13.png
-alt: "The plan, illustrated - Max's morning from Gordon at 9 to Sandboxes at noon, then lunch"
-chrome: false
--->
-
-Note: The same plan, the fun version - then lunch.
+Note: Transition into Max's morning.

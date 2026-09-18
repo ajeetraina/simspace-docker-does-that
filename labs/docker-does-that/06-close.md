@@ -1,66 +1,65 @@
 <!--
 layout: image
-image: assets/slide-35.png
-alt: "The whole day - five things Docker quietly does now: Ask (Gordon), Test (Testcontainers), Verify (Scout), Harden (Hardened Images), Isolate (Sandboxes)"
+image: assets/slide-33.png
+alt: "The whole day - five things Docker quietly does now: Ask, Test, and more."
 chrome: false
 -->
 
-Note: Recap the morning mapped back to the platform picture.
+Note: The whole day - five things Docker quietly does now: Ask (Gordon), Test
+(Testcontainers), and the rest.
+
+---
+
+<!--
+layout: image
+image: assets/slide-34.png
+alt: "Five capabilities. Before lunch. All free. And most of it is already installed as part of your Docker setup. Pick one, use it tomorrow."
+chrome: false
+-->
+
+Note: Five capabilities, before lunch, all free - and most already installed as
+part of your Docker setup. Pick one, use it tomorrow, before lunch.
+
+---
+
+<!--
+layout: image
+image: assets/slide-35.png
+alt: "Closing slide."
+chrome: false
+-->
+
+Note: Closing.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-36.png
-alt: "Five capabilities. Before lunch. All free. And most of it is already installed as part of your Docker setup."
+alt: "Thank you."
 chrome: false
 -->
 
-Note: None of this needs a purchase order to start, and most of it is already on
-their machine. Pick one and use it tomorrow.
+Note: Thank you.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-37.png
-alt: "Thank you - Gordon, Testcontainers (testcontainers.com), Scout, Hardened Images, Sandboxes"
+alt: "Q&A time."
 chrome: false
 -->
 
-Note: Thank them, leave the links up.
+Note: Q&A time.
 
 ---
 
 <!--
 layout: image
 image: assets/slide-38.png
-alt: "Task complete! The Product Catalog stack is running - time for lunch"
+alt: "Connect with us - Kristiyan Velkov and Ajeet Singh Raina, Docker Captain."
 chrome: false
 -->
 
-Note: Max's morning, done - the whole stack up and healthy, the app serving, and
-it's lunchtime.
-
----
-
-<!--
-layout: image
-image: assets/slide-39.png
-alt: "Q&A time"
-chrome: false
--->
-
-Note: Open the floor.
-
----
-
-<!--
-layout: image
-image: assets/slide-40.png
-alt: "Connect with us - Kristiyan Velkov (@krisvelkov) and Ajeet Singh Raina (@ajeetsraina) on X and LinkedIn"
-chrome: false
--->
-
-Note: Point them at both of us - questions, slides, and the repo. Thanks for
-spending the morning with us.
+Note: Connect with us - Kristiyan Velkov and Ajeet Singh Raina.

@@ -1,43 +1,45 @@
 <!--
 layout: image
-image: assets/slide-23.png
-alt: "10:30 - before you push: what's actually inside this image? And does it meet the bar our security team set?"
+image: assets/slide-19.png
+alt: "11:15 - before you push. What's actually inside this image? And does it meet the bar our security team set?"
 chrome: false
 -->
 
-Note: Image built. Before you push it, the honest question: what's in it, and is it
-allowed to ship?
+Note: 11:15 - before you push. "What's actually inside this image?" And does it
+meet the bar the security team set?
 
 ---
 
 <!--
 layout: image
-image: assets/slide-24.png
-alt: "Docker Scout - simplifying and securing the software supply chain: quickview, cves, recommendations, policy evaluation"
+image: assets/slide-20.png
+alt: "Docker Scout - simplifying and securing the software supply chain."
 chrome: false
 -->
 
-Note: Scout answers the question - health, CVEs + SBOM, a safer base, and policy
-pass/fail locally and in CI.
+Note: Docker Scout - simplifying and securing the software supply chain. Look
+inside any image, right from the CLI or Docker Desktop.
 
 ---
 
 <!--
 layout: image
-image: assets/slide-25.png
-alt: "From what's in it to does it pass - docker scout quickview, recommendations, and policy output"
+image: assets/slide-21.png
+alt: "From what's in it to does it pass - docker scout quickview my-app:latest."
 chrome: false
 -->
 
-Note: Four commands, whole story. That last one runs the same in CI.
+Note: From "what's in it" to "does it pass". docker scout quickview my-app:latest
+turns "hope it's fine" into a policy check.
 
 ---
 
 <!--
 layout: image
-image: assets/slide-26.png
-alt: "The problem - an image is a black box of software from many sources; you usually find out after it ships"
+image: assets/slide-22.png
+alt: "The problem - an image is a black box of layers from many sources. Which packages? Which CVEs? Does it violate a policy?"
 chrome: false
 -->
 
-Note: An image is a black box. Usually you learn the answer in production, badly.
+Note: The problem - an image is a black box: layers of software from many sources.
+Which packages, which CVEs, does it violate a policy?

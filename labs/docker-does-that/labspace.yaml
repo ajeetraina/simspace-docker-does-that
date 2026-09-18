@@ -17,14 +17,17 @@ catalog:
 
 version: "1.0.0"
 
-# Default surface for content slides. `title`/`section` layouts pick their own.
-theme: light
+# Default surface for every slide: the dark navy "Docker / Next" template look.
+# `title`/`quote`/`stats` sit on dark already; `section` dividers set theme: dark
+# in their own config so they don't fall back to the light `tint` surface.
+theme: dark
 
-# Branded chrome, set once. Slides override or drop it with `chrome: false`.
-# No deck-wide eyebrow - section/opener slides set their own where wanted.
+# Branded chrome, set once, in the template's key. White mark for the dark surface.
+# Section/opener slides override the eyebrow with the time of the morning.
 brand:
-  logo: assets/docker-logo-deep-blue.svg
-  source: "DOCKER · A developer's morning"
+  logo: assets/docker-logo-white.svg
+  eyebrow: "Docker does that?!"
+  source: "DOCKER / NEXT · WEAREDEVELOPERS 2026"
 
 # `slides:` is an alias of `sections:` - one file per chapter, each split into
 # individual slides on a `---` line.

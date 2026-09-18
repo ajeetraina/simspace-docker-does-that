@@ -1,56 +1,57 @@
 <!--
 layout: image
+image: assets/slide-23.png
+alt: "10:30 - ship with secure images. You type FROM node:20 and inherit a few hundred packages you never asked for."
+chrome: false
+-->
+
+Note: 10:30 - ship with secure images. You type FROM node:20 and inherit a few
+hundred packages you never asked for.
+
+---
+
+<!--
+layout: image
+image: assets/slide-24.png
+alt: "Docker Hardened Images - simplifying and securing the software supply chain."
+chrome: false
+-->
+
+Note: Docker Hardened Images - minimal, patched, signed base images that simplify
+and secure the software supply chain.
+
+---
+
+<!--
+layout: image
+image: assets/slide-25.png
+alt: "The problem - the patch treadmill. A standard base ships a large surface of OS packages, a shell, build tools - every one a potential CVE."
+chrome: false
+-->
+
+Note: The problem - the patch treadmill. A standard base ships a large surface: OS
+packages, a shell, build tools. Every one is a potential CVE, forever your job.
+
+---
+
+<!--
+layout: image
+image: assets/slide-26.png
+alt: "The problem - what 'yes to all' really means: the agent can read every file, use your SSH keys and cloud tokens, reach the whole network, and run anything."
+chrome: false
+-->
+
+Note: The problem - what "yes to all" really means. The agent can read every file,
+use your SSH keys and cloud tokens, reach the whole network, and run anything.
+
+---
+
+<!--
+layout: image
 image: assets/slide-27.png
-alt: "10:30 - ship with secure images: you type FROM node:20 and inherit a few hundred packages you never asked for"
+alt: "Usually a one-line change - before: FROM node:20 (you own the patching); after: a hardened base, patched, minimal, and signed."
 chrome: false
 -->
 
-Note: You package the service. The first line pulls a full base image - a shell, a
-package manager, hundreds of libraries you'll never use but now have to patch.
-
----
-
-<!--
-layout: image
-image: assets/slide-28.png
-alt: "Docker Hardened Images - near-zero CVEs, SBOM + SLSA Build L3 + signatures, patched within ~24h, built on Debian & Alpine"
-chrome: false
--->
-
-Note: Hardened Images flip it: the base arrives patched and stripped down, with
-SBOM, provenance, and signatures baked in.
-
----
-
-<!--
-layout: image
-image: assets/slide-29.png
-alt: "The problem - the patch treadmill: a standard base image is a large surface and keeping up is your ongoing job forever"
-chrome: false
--->
-
-Note: Most CVEs in your image aren't in your code - they're in the base.
-
----
-
-<!--
-layout: image
-image: assets/slide-30.png
-alt: "The problem - what 'yes to all' really means: the agent can use your SSH keys and cloud tokens and run anything"
-chrome: false
--->
-
-Note: A plain container shares the host kernel - a fence, not a wall. For an
-autonomous agent in YOLO mode, you want a real boundary. (Sets up Sandboxes next.)
-
----
-
-<!--
-layout: image
-image: assets/slide-31.png
-alt: "Usually a one-line change - FROM node:20 becomes FROM dhi.io/node:20; base arrives pre-patched"
-chrome: false
--->
-
-Note: Adoption is usually just swapping the FROM line. The CVE treadmill becomes
-someone else's job.
+Note: Usually a one-line change. Before: FROM node:20 and you own the patching.
+After: a hardened base - patched, minimal, and signed.
