@@ -1,6 +1,6 @@
 <!--
 layout: image
-image: assets/slide-14.png
+image: assets/slide-14.webp
 alt: "09:45 - time to write tests. Max needs a database to test the app. A mock, or the shared staging DB everyone fights over?"
 chrome: false
 -->
@@ -12,7 +12,7 @@ shared staging DB everyone fights over?
 
 <!--
 layout: image
-image: assets/slide-15.png
+image: assets/slide-15.webp
 alt: "Testcontainers - bringing the power of containers directly into the testing process."
 chrome: false
 -->
@@ -24,7 +24,7 @@ process. Now part of Docker.
 
 <!--
 layout: image
-image: assets/slide-16.png
+image: assets/slide-16.webp
 alt: "The problem - mocks drift from the real engine; shared test infra means contention and flaky tests."
 chrome: false
 -->
@@ -36,7 +36,7 @@ shared test infra means contention.
 
 <!--
 layout: image
-image: assets/slide-17.png
+image: assets/slide-17.webp
 alt: "Testcontainers - spin up a real dependency as a container from inside your test suite. It starts before your tests, your code connects, and it's torn down automatically."
 chrome: false
 -->
@@ -48,7 +48,7 @@ test suite - started before your tests, connected to, and torn down automaticall
 
 <!--
 layout: image
-image: assets/slide-18.png
+image: assets/slide-18.webp
 alt: "Real Postgres, per test run - a Go TestOrders example using Testcontainers to start a real Postgres just for the test."
 chrome: false
 -->

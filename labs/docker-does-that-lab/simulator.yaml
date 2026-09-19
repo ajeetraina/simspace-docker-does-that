@@ -9,6 +9,7 @@ metadata:
 state:
   containerised: false   # Gordon has scaffolded the files and built the image
   hardened: false
+  mcp_wired: false       # the DHI MCP server is registered with the sandbox
 
 settings:
   pace:
@@ -283,6 +284,60 @@ scenarios:
         - "Built my-app:latest - still on node:20. Swap to a hardened base to drop the CVEs."
 
   # ── Page 5 · Sandboxes ─────────────────────────────────────────────────────
+  # Start the sandbox daemon - the microVM host that runs agents off your machine.
+  - id: sbx-daemon
+    when:
+      command: [sbx, daemon, start]
+    then:
+      output:
+        - { text: "Starting sandbox daemon…", delay: short }
+        - "  ✔ sandbox daemon running (microVMs · own kernel · own dockerd)"
+        - "  ✔ host mounted read-only · network deny-by-default"
+
+  # `sbx mcp add` - register the DHI MCP server WITH the sandbox (via sbx, no
+  # Docker CLI). Listed before the plain `sbx mcp ls` so ordering is clear.
+  - id: sbx-mcp-add
+    completes: wire-dhi-mcp
+    when:
+      command: [sbx, mcp, add]
+    then:
+      state: { mcp_wired: true }
+      output:
+        - { text: "Registering MCP server 'remotedhi' (https://dhi.io/mcp)…", delay: short }
+        - "  ✔ remotedhi added - remote server over streamable-http"
+        - "  read-only DHI tools now reachable from inside the sandbox."
+
+  - id: sbx-mcp-inspect
+    when:
+      command: [sbx, mcp, inspect]
+    then:
+      output:
+        - "  Name       remotedhi"
+        - "  Transport  streamable-http   (remote)"
+        - "  URL        https://dhi.io/mcp"
+        - "  Tools      dhi_get_image_cves, dhi_get_image_details,"
+        - "             dhi_get_tag_definition, dhi_list_repositories, …"
+
+  # After the DHI server is wired in, `sbx mcp ls` lists it.
+  - id: sbx-mcp-ls-wired
+    when:
+      command: [sbx, mcp, ls]
+      state: { mcp_wired: true }
+    then:
+      output:
+        - "NAME       TRANSPORT        URL"
+        - "remotedhi  streamable-http  https://dhi.io/mcp"
+
+  # Before anything is wired in, the sandbox has no MCP servers.
+  - id: sbx-mcp-ls-empty
+    when:
+      command: [sbx, mcp, ls]
+    then:
+      output:
+        - "(no MCP servers registered - wire one in with `sbx mcp add`)"
+
+  # `sbx run <agent>` - drop an agent into the microVM. With the DHI server wired
+  # in, it queries the hardened catalog before it writes `FROM`.
   - id: sbx-run
     completes: run-sandbox
     when:
@@ -292,44 +347,25 @@ scenarios:
     then:
       output:
         - { text: "Booting microVM (own kernel · own dockerd)…", delay: boot }
-        - "  ✔ microVM booted"
-        - "  ✔ network policy: deny-by-default"
+        - "  ✔ microVM booted · host read-only · network deny-by-default"
         - "  ✔ secrets: OS keychain → proxy (nothing written to VM)"
+        - "  ✔ MCP: remotedhi attached (DHI catalog, read-only)"
         - ""
-        - "agent '{{ args.0 }}' is live. It can edit your code - and nothing else."
+        - "agent '{{ args.0 }}' calls dhi_get_image_cves before writing FROM…"
+        - "  ↳ dhi.io/node:20  -  near-zero CVEs, signed, attestations attached"
+        - "  ↳ wrote Dockerfile on the hardened base, SBOM attached"
+        - ""
+        - "Image built inside the box - the fast path the agent took IS the hardened one."
 
-  # Part 2 · Govern the tools the agent calls (Docker MCP Toolkit)
-  - id: mcp-catalog
+  # `sbx env run` - the whole sandbox (agent + DHI MCP + policy) from .sbxenv.yaml.
+  - id: sbx-env-run
     when:
-      command: [docker, mcp, catalog]
+      command: [sbx, env, run]
     then:
       output:
-        - "NAME        DESCRIPTION                         PULLS   SIGNED"
-        - "github      GitHub API (issues, PRs, repos)     4.2M    ✔"
-        - "postgres    Query a PostgreSQL database         1.8M    ✔"
-        - "fetch       Fetch and read web pages            3.1M    ✔"
-        - "filesystem  Scoped local file access            2.6M    ✔"
+        - { text: "Reading .sbxenv.yaml…", delay: short }
+        - "  ✔ sandbox 'catalog-sandbox' created"
+        - "  ✔ remotedhi registered · profile 'dhi-readonly' applied"
+        - "  ✔ attached to agent 'claude'"
         - ""
-        - "200+ verified servers - signed and versioned, not `npx` from a random repo."
-
-  - id: mcp-enable
-    when:
-      command: [docker, mcp, server]
-    then:
-      output:
-        - "✔ Enabled 'github'   - runs in its own container"
-        - "✔ Enabled 'postgres' - runs in its own container"
-        - "Each server is isolated; pair with `sbx` and the tool is walled off too."
-
-  - id: mcp-gateway
-    completes: run-mcp-gateway
-    when:
-      command: [docker, mcp, gateway]
-    then:
-      output:
-        - { text: "Starting MCP gateway…", delay: short }
-        - "  ✔ gateway listening - one audited front door for every tool call"
-        - "  ✔ secrets injected from Docker (never pasted into agent config)"
-        - "  ✔ servers reachable: github, postgres  (each in its own container)"
-        - ""
-        - "Sandbox the agent (sbx) + govern its tools (MCP) - both halves closed."
+        - "Same boundary, same signed tools, same policy - now a file in the repo."

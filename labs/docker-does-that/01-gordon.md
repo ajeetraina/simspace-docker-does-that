@@ -1,6 +1,6 @@
 <!--
 layout: image
-image: assets/slide-10.png
+image: assets/slide-10.webp
 alt: "09:00 - coffee, editor, AI assistant. Max let an AI agent analyze his repo."
 chrome: false
 -->
@@ -12,7 +12,7 @@ his repo.
 
 <!--
 layout: image
-image: assets/slide-11.png
+image: assets/slide-11.webp
 alt: "Gordon - an AI-powered assistant for your Docker workflow."
 chrome: false
 -->
@@ -24,7 +24,7 @@ Docker Desktop and the CLI.
 
 <!--
 layout: image
-image: assets/slide-12.png
+image: assets/slide-12.webp
 alt: "Docker does that - containerising the app using Gordon."
 chrome: false
 -->
@@ -35,7 +35,7 @@ Note: Docker does that - containerising the app using Gordon.
 
 <!--
 layout: image
-image: assets/slide-13.png
+image: assets/slide-13.webp
 alt: "Containerising the app using Gordon - docker ai containerize this product catalog sample app."
 chrome: false
 -->

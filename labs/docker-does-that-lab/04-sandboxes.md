@@ -1,74 +1,148 @@
-# Docker Sandboxes + MCP - isolate the agent AND the tools it calls
+# Docker Sandboxes - box the agent in, then hand it signed tools
 
-It's **12:00**. For the last cleanup, Max lets an autonomous coding agent loose on
+It's **12:00**. For the last task, Max lets an autonomous coding agent loose on
 the repo - and it has the **exact same permissions he does**. It can read every
 file, use his **SSH keys and cloud tokens**, reach the whole network, and run
 anything: `rm -rf`, or an `npm install` that pulls a poisoned package.
 
 A plain container shares the host kernel - a fence, not a wall. For an agent in
-"YOLO mode," you want a real boundary.
+"YOLO mode," you want a real boundary. And the boundary is only half the story:
+the agent still has to *choose* things - like which base image to build on. Box it
+in, then point it at **signed tools** so the choices it makes are the safe ones.
 
-## Part 1 - Sandbox where the agent runs
+## What `sbx` is
 
-**Docker Sandboxes** (the `sbx` CLI) wraps the agent in a lightweight **microVM**
-with its own kernel and its own Docker daemon - a hard hypervisor wall:
+**Docker Sandboxes** (the `sbx` CLI) runs an agent inside a lightweight
+**microVM**. The agent still gets full permissions - but *inside the box*: its own
+Docker daemon, its own network, and a **read-only** view of your host. A
+prompt-injected or misbehaving agent cannot reach your host daemon or your
+credentials, because from inside the sandbox they are not there.
 
-- **Filesystem:** works on your code, can't touch the rest of your machine
+- **Filesystem:** works on your code, host mounted **read-only**
 - **Network:** deny-by-default; you allow-list what it may reach
-- **Credentials:** secrets stay in your OS keychain; a host-side proxy injects them on outbound calls - never written to disk or into the VM
+- **Credentials:** stay in your OS keychain; nothing is written into the VM
 
-Run an agent inside a sandbox:
+## Set up the sandbox
 
-```bash
-sbx run claude
+One-time host setup - install the CLI and start the sandbox daemon:
+
+```bash no-run-button
+brew install docker/tap/sbx
 ```
 
-One command - no Docker Desktop required. Swap `claude` for `codex`, `gemini`, or
-`copilot`. The microVM boots, the network policy locks down, and the agent goes
-live able to edit your code and **nothing else**.
-
-## Part 2 - Govern the tools the agent calls (MCP)
-
-Sandboxing *where the agent runs* is only half the story. Agents don't work alone -
-they call tools over **MCP** (Model Context Protocol): a GitHub server, a database
-server, a web-fetch server. Each one is code you now trust, often `npx`-installed
-from who-knows-where, running with **your** credentials. A prompt-injected agent
-plus an over-scoped tool is the whole **lethal trifecta**.
-
-The **Docker MCP Toolkit & Catalog** treats MCP servers like any other image:
-curated, signed, versioned, and containerized - governed the same way you already
-govern images (including on **Docker Hardened Images**).
-
-### 1. Browse the verified catalog
-
 ```bash
-docker mcp catalog ls
+sbx daemon start -d
 ```
 
-200+ verified servers on Docker Hub - signed and versioned, not `npx` from a random
-repo.
-
-### 2. Enable the servers this project needs
+Nothing is wired in yet. Confirm the sandbox has no MCP servers:
 
 ```bash
-docker mcp server enable github postgres
+sbx mcp ls
 ```
 
-Each server runs **in its own container**, isolated. Pair it with `sbx` and the
-tool is walled off too.
+## Govern the tools the agent calls (MCP)
 
-### 3. Start the MCP gateway
+Agents don't work alone - they call tools over **MCP** (Model Context Protocol):
+a catalog server, a database server, a web-fetch server. Each one is code you now
+trust, running with **your** credentials. A prompt-injected agent plus an
+over-scoped tool is the whole **lethal trifecta**.
+
+`sbx` governs this itself - no separate Docker CLI. It enforces a **Cedar**
+access policy over three MCP actions: `register` a server, `invokeTool` on it, and
+`invokePrimordial` (the built-in gateway primitives). In production you scope
+`invokeTool` to the read-only tools and deny the mutating ones - so a
+prompt-injected agent can *read* the hardened catalog but never rewrite it.
+
+## Wire in the DHI MCP server
+
+Docker hosts the **DHI MCP server** at `https://dhi.io/mcp` - a remote server the
+agent queries to choose hardened base images (search by name, CVEs, attestations,
+packages, or compliance). Register it **with the sandbox**, by URL - through `sbx`,
+not the Docker CLI:
 
 ```bash
-docker mcp gateway run
+sbx mcp add remotedhi --url https://dhi.io/mcp
 ```
 
-One **gateway** brokers every call and injects secrets from Docker - so tokens are
-**never** pasted into agent config. Now the agent reaches its tools through a single,
-audited, containerized front door.
+Inspect what you just added:
 
-> **Docker does that?!** Sandbox *where the agent runs* (`sbx`) **and** govern
-> *what it can call* (MCP Toolkit). Together they close both halves of the loop -
-> give agents room to work without giving them your machine or your credentials.
+```bash
+sbx mcp inspect remotedhi
+```
+
+It is a **remote** server over `streamable-http`. The tools it now exposes to the
+sandboxed agent are read-only queries against Docker's hardened catalog -
+`dhi_get_image_cves`, `dhi_get_image_details`, `dhi_get_image_packages`,
+`dhi_get_tag_definition`, `dhi_list_repositories` - the same signed evidence you
+measured by hand with Scout earlier. Confirm it registered:
+
+```bash
+sbx mcp ls
+```
+
+## Now let the agent build it
+
+Drop the agent into the sandbox with the DHI MCP server statically attached, and
+hand it the same containerize task - the one that first shipped `FROM node:20`
+with a stack of high CVEs. Nothing about the prompt changes; only the environment
+around the agent does:
+
+```bash
+sbx run claude --static-mcp remotedhi -p "Containerize the product-catalog app for production. Choose a hardened base image, keep the final image shell-free, and attach an SBOM."
+```
+
+Before it writes a single `FROM`, the agent calls `dhi_get_image_cves` and
+`dhi_get_tag_definition` against Docker's hardened catalog, sees that
+`dhi.io/node:20` carries near-zero CVEs and ships its own attestations, and *only
+then* writes the Dockerfile. Measure what it produced with the same Scout command
+from earlier:
+
+```bash
+docker scout quickview
+```
+
+Same hardened base you reached by hand in the last section - except the agent got
+there on its own, unattended, inside a box it could not escape, from signed
+catalog data it could not forge. **The fast path it took by itself *is* the
+hardened one.**
+
+## One file, the whole sandbox
+
+You wired this box up one command at a time. A **sandbox environment file**
+declares the same thing once - the agent, the DHI MCP server, and the governing
+policy - so a teammate or a CI job recreates the identical box from a file
+committed to the repo. Save it at the repo root as `.sbxenv.yaml`:
+
+```yaml save-as=.sbxenv.yaml
+schemaVersion: "1"
+name: catalog-sandbox
+agent: claude
+
+workspace:
+  path: product-catalog
+  clone: true
+
+# Scoped, read-only DHI governance - register + read the catalog, never rewrite it.
+sandboxOptions:
+  profile: dhi-readonly
+
+mcp:
+  servers:
+    - name: remotedhi
+      url: https://dhi.io/mcp
+```
+
+Now the commands you ran by hand collapse into one. `sbx env run` creates the
+sandbox, registers `remotedhi`, applies the policy, and attaches you to the agent:
+
+```bash
+sbx env run
+```
+
+> **Docker does that?!** Box the agent in (`sbx` microVM) **and** govern what it
+> can call (the DHI MCP server, wired through `sbx` and policy-gated). A boundary
+> so a bad agent cannot reach your host, and a signed tool so a good agent checks a
+> base image's CVEs *before* it commits to it - the safe path and the fast path
+> become the same path.
 
 That's five capabilities, one morning, one product-catalog app - **before lunch.** 🐳

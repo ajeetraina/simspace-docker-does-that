@@ -121,7 +121,7 @@ sections:
   - title: "Sandboxes + MCP - isolate the agent and its tools"
     contentPath: 04-sandboxes.md
     steps:
+      - id: wire-dhi-mcp
+        title: "Wire the DHI MCP server into the sandbox"
       - id: run-sandbox
-        title: "Run an agent in a sandbox"
-      - id: run-mcp-gateway
-        title: "Govern its tools with the MCP gateway"
+        title: "Run the sandboxed agent against signed tools"

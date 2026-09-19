@@ -1,6 +1,6 @@
 <!--
 layout: image
-image: assets/slide-19.png
+image: assets/slide-19.webp
 alt: "11:15 - before you push. What's actually inside this image? And does it meet the bar our security team set?"
 chrome: false
 -->
@@ -12,7 +12,7 @@ meet the bar the security team set?
 
 <!--
 layout: image
-image: assets/slide-20.png
+image: assets/slide-20.webp
 alt: "Docker Scout - simplifying and securing the software supply chain."
 chrome: false
 -->
@@ -24,7 +24,7 @@ inside any image, right from the CLI or Docker Desktop.
 
 <!--
 layout: image
-image: assets/slide-21.png
+image: assets/slide-21.webp
 alt: "From what's in it to does it pass - docker scout quickview my-app:latest."
 chrome: false
 -->
@@ -36,7 +36,7 @@ turns "hope it's fine" into a policy check.
 
 <!--
 layout: image
-image: assets/slide-22.png
+image: assets/slide-22.webp
 alt: "The problem - an image is a black box of layers from many sources. Which packages? Which CVEs? Does it violate a policy?"
 chrome: false
 -->

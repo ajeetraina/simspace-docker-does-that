@@ -1,6 +1,6 @@
 <!--
 layout: image
-image: assets/slide-01.png
+image: assets/slide-01.webp
 alt: "Docker does that?! - Five Docker capabilities you may not know about. WeAreDevelopers 2026."
 chrome: false
 -->
@@ -12,7 +12,7 @@ about. WeAreDevelopers 2026.
 
 <!--
 layout: image
-image: assets/slide-02.png
+image: assets/slide-02.webp
 alt: "Meet your speakers - Kristiyan Velkov and Ajeet Singh Raina."
 chrome: false
 -->
@@ -24,7 +24,7 @@ Note: Meet your speakers - Kristiyan Velkov (Docker Captain) and Ajeet Singh Rai
 
 <!--
 layout: image
-image: assets/slide-03.png
+image: assets/slide-03.webp
 alt: "Agenda - Gordon, Testcontainers, Docker Scout, Hardened Images, Sandboxes."
 chrome: false
 -->
@@ -36,7 +36,7 @@ Hardened Images, and Sandboxes.
 
 <!--
 layout: image
-image: assets/slide-04.png
+image: assets/slide-04.webp
 alt: "Docker Platform - build, run, and share software. Securely. Local and Cloud."
 chrome: false
 -->
@@ -48,7 +48,7 @@ and cloud.
 
 <!--
 layout: image
-image: assets/slide-05.png
+image: assets/slide-05.webp
 alt: "Docker AI Platform - build, run, and share AI agents. Securely. Local and Cloud."
 chrome: false
 -->
@@ -60,7 +60,7 @@ local and cloud.
 
 <!--
 layout: image
-image: assets/slide-06.png
+image: assets/slide-06.webp
 alt: "The shift - Docker isn't just a container company anymore. It's an AI company building the platform to build, run, and ship agents securely."
 chrome: false
 -->
@@ -72,7 +72,7 @@ building the platform to build, run, and ship agents securely.
 
 <!--
 layout: image
-image: assets/slide-07.png
+image: assets/slide-07.webp
 alt: "The plan - one developer, Max, one morning, five surprises, from 09:00 to 12:00."
 chrome: false
 -->
@@ -84,7 +84,7 @@ through 12:00.
 
 <!--
 layout: image
-image: assets/slide-08.png
+image: assets/slide-08.webp
 alt: "Task - Max has been asked to containerize the Product Catalog sample app, following best practices."
 chrome: false
 -->
@@ -96,7 +96,7 @@ following the best practices.
 
 <!--
 layout: image
-image: assets/slide-09.png
+image: assets/slide-09.webp
 alt: "Section transition into Max's morning."
 chrome: false
 -->

@@ -1,6 +1,6 @@
 <!--
 layout: image
-image: assets/slide-28.png
+image: assets/slide-28.webp
 alt: "12:00 - isolate the environment for an AI coding agent. You let an agent loose on your repo, and it has the exact same permissions you do."
 chrome: false
 -->
@@ -12,7 +12,7 @@ loose on your repo, and it has the exact same permissions you do.
 
 <!--
 layout: image
-image: assets/slide-29.png
+image: assets/slide-29.webp
 alt: "Docker Sandboxes - simplifying and securing the software supply chain."
 chrome: false
 -->
@@ -23,7 +23,7 @@ Note: Docker Sandboxes - give agents room to work without giving them your machi
 
 <!--
 layout: image
-image: assets/slide-30.png
+image: assets/slide-30.webp
 alt: "Docker Sandboxes - architecture overview."
 chrome: false
 -->
@@ -34,7 +34,7 @@ Note: How a sandbox isolates the agent.
 
 <!--
 layout: image
-image: assets/slide-31.png
+image: assets/slide-31.webp
 alt: "Docker Sandbox microVM - a hard hypervisor boundary, the same isolation cloud providers use between customers, with Docker AI Governance."
 chrome: false
 -->
@@ -46,7 +46,7 @@ isolation cloud providers use between customers, under Docker AI Governance.
 
 <!--
 layout: image
-image: assets/slide-32.png
+image: assets/slide-32.webp
 alt: "It's one command - standalone sbx run claude, no Docker Desktop required. GA since Jan 2026, free to try."
 chrome: false
 -->
