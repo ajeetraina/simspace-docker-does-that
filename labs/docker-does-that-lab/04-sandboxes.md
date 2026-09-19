@@ -24,9 +24,20 @@ credentials, because from inside the sandbox they are not there.
 
 ## Set up the sandbox
 
-One-time host setup - install the CLI and start the sandbox daemon:
+One-time host setup - trust Docker's Homebrew tap, install the CLI, and start
+the sandbox daemon.
 
-```bash no-run-button
+Tells Homebrew that `docker/tap` is a trusted source for casks. This is a
+**Homebrew** command — there is no `docker tap` CLI subcommand:
+
+```bash
+brew trust docker/tap
+```
+
+On older Homebrew you may see `brew tap docker/tap` instead of `brew trust` —
+either works in this lab.
+
+```bash
 brew install docker/tap/sbx
 ```
 

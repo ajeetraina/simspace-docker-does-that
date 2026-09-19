@@ -284,6 +284,77 @@ scenarios:
         - "Built my-app:latest - still on node:20. Swap to a hardened base to drop the CVEs."
 
   # ── Page 5 · Sandboxes ─────────────────────────────────────────────────────
+  # Homebrew tap/install. Slash tokens (docker/tap) match as a command path
+  # AND as args.0 — first-match-wins, same as docker-sandbox-workshop-lab.
+  - id: brew-trust-docker-tap
+    when:
+      command: [brew, trust, docker/tap]
+    then:
+      output:
+        - "✔ docker/tap is now a trusted tap"
+
+  - id: brew-tap-docker-tap
+    when:
+      command: [brew, tap, docker/tap]
+    then:
+      output:
+        - "==> Tapping docker/tap"
+        - "Tapped 1 cask (13 files, 8.5KB)."
+
+  - id: brew-install-sbx-cask
+    when:
+      command: [brew, install, docker/tap/sbx]
+    then:
+      output:
+        - "==> Fetching downloads for: sbx"
+        - "==> Installing Cask sbx"
+        - "==> Linking Binary 'sbx' to '/opt/homebrew/bin/sbx'"
+        - "🍺  sbx was successfully installed!"
+
+  - id: brew-trust
+    when:
+      command: [brew, trust]
+      args:
+        0: docker/tap
+    then:
+      output:
+        - "✔ docker/tap is now a trusted tap"
+
+  - id: brew-tap
+    when:
+      command: [brew, tap]
+      args:
+        0: docker/tap
+    then:
+      output:
+        - "==> Tapping docker/tap"
+        - "Tapped 1 cask (13 files, 8.5KB)."
+
+  - id: brew-install
+    when:
+      command: [brew, install]
+      args:
+        0: docker/tap/sbx
+    then:
+      output:
+        - "==> Fetching downloads for: sbx"
+        - "==> Installing Cask sbx"
+        - "==> Linking Binary 'sbx' to '/opt/homebrew/bin/sbx'"
+        - "🍺  sbx was successfully installed!"
+
+  # `docker tap` is not a Docker CLI command — return a hint, not "not found".
+  - id: docker-tap-hint
+    when:
+      command: [docker, tap]
+    then:
+      stderr:
+        - "docker: 'tap' is not a docker command."
+        - ""
+        - "Use Homebrew instead:"
+        - "  brew trust docker/tap"
+        - "  brew install docker/tap/sbx"
+      exit: 1
+
   # Start the sandbox daemon - the microVM host that runs agents off your machine.
   - id: sbx-daemon
     when:
