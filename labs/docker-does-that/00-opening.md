@@ -231,36 +231,14 @@ through 12:00: Gordon, Testcontainers, Docker Scout, Hardened Images, Sandboxes.
 ---
 
 <!--
-layout: split
-columns: 3 2
+layout: image
+image: assets/slide-08.webp
+alt: "Task - Max has been asked to containerize the Product Catalog sample app, following best practices."
+chrome: false
 -->
 
-<style>
-/* DDT-NEXT-THEME: flat near-black to match the baked image slides */
-.deck-canvas--dark { --docker-deep: #0B0F19; --deck-accent: #9db8ff; background: #0B0F19 !important; }
-.dayeyebrow { color: #6b7fff; font-weight: 800; letter-spacing: 0.14em; font-size: 0.72em; }
-.daybody { color: #cbd5e1; font-size: 1.15em; line-height: 1.4; max-width: 22ch; }
-.daybody strong { color: #ffffff; }
-.devart img { width: 100% !important; max-width: 560px !important; height: auto !important; }
-</style>
-
-<span class="dayeyebrow">A TYPICAL DAY</span>
-
-# A day in the life of a developer
-
-<p class="daybody">Max needs to <strong>build, containerise, and ship</strong> the product - following the best practices.</p>
-
-<!-- region -->
-
-<div class="devart">
-
-![A developer at a desk building, containerising and shipping software](assets/dev-illustration.svg)
-
-</div>
-
-Note: A typical day in the life of a developer. Max needs to build, containerise,
-and ship the product - following the best practices. Everything that follows is how
-Docker helps him do exactly that.
+Note: The task - Max has been asked to containerize the Product Catalog sample app,
+following the best practices.
 
 ---
 
