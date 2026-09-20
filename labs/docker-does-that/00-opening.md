@@ -31,14 +31,21 @@ layout: default
 .deck-canvas--dark { --docker-deep: #0B0F19; --deck-accent: #9db8ff; background: #0B0F19 !important; }
 .bigshift { font-weight: 800; line-height: 1.12; letter-spacing: -0.015em;
   font-size: 6.6cqi; max-width: 15ch; margin: 0.2em 0 0; }
-.bigshift .punch { display: block; margin-top: 1.1em; }
+.bigshift.punch { margin-top: 1.1em; }
 .bigshift .accent { color: #e8833a; }
 </style>
 
 <div class="bigshift">
 Docker isn't just a container company anymore.
-<span class="punch">It's an <span class="accent">AI company&nbsp;!</span></span>
 </div>
+
+:::fragment
+
+<div class="bigshift punch">
+It's an <span class="accent">AI company&nbsp;!</span>
+</div>
+
+:::
 
 Note: The one-line thesis of this talk - Docker isn't just a container company
 anymore, it's an AI company, building the platform to build, run, and ship agents
