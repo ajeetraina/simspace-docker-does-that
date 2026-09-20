@@ -33,8 +33,12 @@ layout: default
   font-size: 4.7cqi; max-width: 20ch; margin: 0; }
 .bigshift.punch { margin-top: 0.7em; }
 .bigshift .accent { color: #f5c518; }
-.productbar { margin-top: 1.2em; }
-.productbar img { width: 70%; max-width: 1040px; border-radius: 8px; }
+.pillgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 1.5em; }
+.pillgrid p { display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: #f4f6fb; border-radius: 16px; padding: 16px 14px; margin: 0;
+  font-weight: 700; color: #0b1220; font-size: 1.7cqi; white-space: nowrap; }
+.pillgrid p img { height: 34px !important; width: auto !important; max-width: none !important;
+  flex: 0 0 auto; margin: 0; }
 </style>
 
 <div class="bigshift">
@@ -47,9 +51,23 @@ Docker isn't just a container company anymore.
 It's an <span class="accent">AI company!</span>
 </div>
 
-<div class="productbar">
+<div class="pillgrid">
 
-![Docker's AI products - model runner, compose, gordon, mcp gateway, mcp, mcp hub, mcp toolkit, sandboxes](assets/product-bar.webp)
+![Docker](assets/docker-logo-deep-blue.svg) sandboxes
+
+![Docker](assets/docker-logo-deep-blue.svg) gordon
+
+![Docker](assets/docker-logo-deep-blue.svg) model runner
+
+![Docker](assets/docker-logo-deep-blue.svg) mcp
+
+![Docker](assets/docker-logo-deep-blue.svg) hardened images
+
+![Docker](assets/docker-logo-deep-blue.svg) mcp hub
+
+![Docker](assets/docker-logo-deep-blue.svg) mcp gateway
+
+![Docker](assets/docker-logo-deep-blue.svg) compose
 
 </div>
 
