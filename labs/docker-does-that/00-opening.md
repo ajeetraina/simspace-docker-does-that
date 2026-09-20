@@ -166,14 +166,34 @@ local and cloud.
 ---
 
 <!--
-layout: image
-image: assets/slide-07.webp
-alt: "The plan - one developer, Max, one morning, five surprises, from 09:00 to 12:00."
-chrome: false
+layout: default
 -->
 
+<style>
+/* DDT-NEXT-THEME: flat near-black to match the baked image slides */
+.deck-canvas--dark { --docker-deep: #0B0F19; --deck-accent: #9db8ff; background: #0B0F19 !important; }
+.planeyebrow { color: #6b7fff; font-weight: 800; letter-spacing: 0.14em; font-size: 0.72em; }
+.planrow { display: flex; gap: 20px; margin-top: 1.3em; }
+.plancard { flex: 1; border-top: 4px solid #2563eb; padding-top: 14px; }
+.plancard .t { font-weight: 700; font-size: 1.05em; color: #cbd5e1; }
+.plancard .h { font-weight: 800; font-size: 1.15em; margin: 8px 0 10px; white-space: nowrap; }
+.plancard .d { color: #9aa6c2; font-size: 0.92em; line-height: 1.3; }
+</style>
+
+<span class="planeyebrow">THE PLAN</span>
+
+# One developer - Max. One morning. Five surprises.
+
+<div class="planrow">
+<div class="plancard"><div class="t">09:00</div><div class="h">Gordon</div><div class="d">AI assistant for Docker developers</div></div>
+<div class="plancard"><div class="t">09:45</div><div class="h">Testcontainers</div><div class="d">A real DB in your tests</div></div>
+<div class="plancard"><div class="t">10:30</div><div class="h">Docker Scout</div><div class="d">Base images arrive patched</div></div>
+<div class="plancard"><div class="t">11:15</div><div class="h">Hardened Images</div><div class="d">Know what's inside. Enforce policy</div></div>
+<div class="plancard"><div class="t">12:00</div><div class="h">Sandboxes</div><div class="d">Pair with an AI agent safely</div></div>
+</div>
+
 Note: The plan - one developer, Max. One morning. Five surprises, from 09:00
-through 12:00.
+through 12:00: Gordon, Testcontainers, Docker Scout, Hardened Images, Sandboxes.
 
 ---
 
