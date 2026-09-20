@@ -32,17 +32,5 @@ brand:
 # `slides:` is an alias of `sections:` - one file per chapter, each split into
 # individual slides on a `---` line.
 slides:
-  - title: Opening
+  - title: "Docker does that?!"
     contentPath: 00-opening.md
-  - title: Gordon
-    contentPath: 01-gordon.md
-  - title: Testcontainers
-    contentPath: 02-testcontainers.md
-  - title: Scout
-    contentPath: 03-scout.md
-  - title: Hardened Images
-    contentPath: 04-hardened-images.md
-  - title: Sandboxes
-    contentPath: 05-sandboxes.md
-  - title: Close
-    contentPath: 06-close.md
