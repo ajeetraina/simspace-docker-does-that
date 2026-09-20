@@ -29,10 +29,12 @@ layout: default
 <style>
 /* DDT-NEXT-THEME: flat near-black to match the baked image slides */
 .deck-canvas--dark { --docker-deep: #0B0F19; --deck-accent: #9db8ff; background: #0B0F19 !important; }
-.bigshift { font-weight: 800; line-height: 1.12; letter-spacing: -0.015em;
-  font-size: 6.6cqi; max-width: 15ch; margin: 0.2em 0 0; }
-.bigshift.punch { margin-top: 1.1em; }
-.bigshift .accent { color: #e8833a; }
+.bigshift { font-weight: 800; line-height: 1.08; letter-spacing: -0.015em;
+  font-size: 4.7cqi; max-width: 20ch; margin: 0; }
+.bigshift.punch { margin-top: 0.7em; }
+.bigshift .accent { color: #f5c518; }
+.productbar { margin-top: 1.2em; }
+.productbar img { width: 70%; max-width: 1040px; border-radius: 8px; }
 </style>
 
 <div class="bigshift">
@@ -42,7 +44,13 @@ Docker isn't just a container company anymore.
 :::fragment
 
 <div class="bigshift punch">
-It's an <span class="accent">AI company&nbsp;!</span>
+It's an <span class="accent">AI company!</span>
+</div>
+
+<div class="productbar">
+
+![Docker's AI products - model runner, compose, gordon, mcp gateway, mcp, mcp hub, mcp toolkit, sandboxes](assets/product-bar.webp)
+
 </div>
 
 :::
